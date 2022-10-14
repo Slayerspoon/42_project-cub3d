@@ -6,7 +6,7 @@
 #    By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/23 19:30:15 by aionescu          #+#    #+#              #
-#    Updated: 2022/08/23 19:30:22 by aionescu         ###   ########.fr        #
+#    Updated: 2022/10/12 19:13:59 by aionescu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,20 +16,25 @@ LIBFT = libft.a
 
 LIBMLX = libmlx.a
 
-SRC = main.c error_check_map.c generate_game_map.c graphics_config.c \
-		display_map.c update_map.c
+SRC = main.c process_gamedata.c process_nsew.c process_floor_ceiling.c \
+		process_layout.c
 
-OBJ = main.o error_check_map.o generate_game_map.o graphics_config.c \
-		display_map.o update_map.o
+# OBJ = main.o process_gamedata.o process_nsew.o process_floor_ceiling.o \
+# 		process_layout.o
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(LIBFT) $(LIBMLX) 
-	$(CC) $(OBJ) $(LIBFT) $(LIBMLX) -L/usr/X11/lib -lXext -lX11 -g -o $(NAME)
+# $(NAME): $(OBJ) $(LIBFT) $(LIBMLX) 
+# 	$(CC) $(OBJ) $(LIBFT) $(LIBMLX) -L/usr/X11/lib -lXext -lX11 -g -o $(NAME)
+# 	chmod a+x $(NAME)
+
+$(NAME): $(LIBFT)
+	$(CC) -Wall -Wextra -Werror $(SRC) $(LIBFT) -o $(NAME)
+	rm -f *.o
 	chmod a+x $(NAME)
 
-$(OBJ): $(SRC)
-	$(CC) -Wall -Wextra -Werror -Imlx -c $(SRC)
+# $(OBJ): $(SRC)
+# 	$(CC) -Wall -Wextra -Werror -Imlx -c $(SRC)
 
 $(LIBFT):
 	cd libft && $(MAKE)
