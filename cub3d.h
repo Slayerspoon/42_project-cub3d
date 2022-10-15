@@ -6,7 +6,7 @@
 /*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:12:17 by aionescu          #+#    #+#             */
-/*   Updated: 2022/10/13 17:05:19 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/10/15 19:12:14 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,18 @@ typedef struct s_resolution {
 /* main.c */
 int		main(int argc, char **argv);
 int		exit_game(t_gamedata *gamedata);
+
+/* parsing_utils.c */
+char	first_nonspace_char(char *line);
+
+/* file_structure_check.c */
+int		check_element_beginning(char *l);
+int		check_lines(char *lines_as_str);
+int		file_structure_check(char *filename);
+
+/* missing_info_check.c */
+void	update_counters(char *line_start, int *counters);
+int		missing_info_check(char *start);
 
 /* process_gamedata.c */
 char	*read_to_string(int fd);

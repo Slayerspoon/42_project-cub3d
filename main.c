@@ -6,7 +6,7 @@
 /*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:09:18 by aionescu          #+#    #+#             */
-/*   Updated: 2022/10/13 17:02:06 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/10/15 19:31:35 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,11 +115,11 @@ int	main(int argc, char **argv)
 	t_gamedata		gamedata;
 	// t_resolution	resolution;
 
-	// if (argc != 2 || !error_check_map(argv[1])) // Must think about this part. Function error_check_map() does not exist!
-	// {
-	// 	printf("Error:\nInvalid map provided.\n");
-	// 	return (1);
-	// }
+	if (argc != 2 || file_structure_check(argv[1]) != 0)
+	{
+		printf("Error:\nInvalid map provided.\n");
+		return (1);
+	}
 	initialize_gamedata(&gamedata);
 	if (argc != 2 || process_gamedata(argv[1], &gamedata) != 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:16:21 by aionescu          #+#    #+#             */
-/*   Updated: 2022/10/13 19:44:58 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/10/15 16:11:55 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,6 @@ char	*read_to_string(int fd)
 	final_str = ft_strdup(temp_str);
 	free(temp_str);
 	return (final_str);
-}
-
-// This function returns the first non-space character it finds in a string,
-// starting from the position that gets passed as a parameter.
-char	first_nonspace_char(char *line)
-{
-	int	index;
-
-	index = 0;
-	while (line[index] != '\0')
-	{
-		if (line[index] != ' ' && line[index] != '\t')
-			return (line[index]);
-		index++;
-	}
-	return ('\0');
 }
 
 // This function calls the appropriate sub-function to process a line
@@ -68,6 +52,8 @@ char	process_valid_line(char *line, t_gamedata *gamedata)
 		processed_type = process_ceiling(line, gamedata);
 	else if (first_nonspace_char(line) == '1')
 		processed_type = process_layout(line, gamedata);
+	else if (first_nonspace_char(line) == '\n')
+		processed_type = '\n';
 	else
 		processed_type = '\0';
 	return (processed_type);
@@ -86,7 +72,8 @@ int	populate_gamedata(char *source, t_gamedata *gamedata)
 	while (*position != '\0')
 	{
 		processed_line_result = process_valid_line(position, gamedata);
-		if ('A' <= processed_line_result && processed_line_result <= 'Z')
+		if (('A' <= processed_line_result && processed_line_result <= 'Z')
+			|| processed_line_result == '\n')
 		{
 			if (processed_line_result == 'L')
 				break ;

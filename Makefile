@@ -6,7 +6,7 @@
 #    By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/23 19:30:15 by aionescu          #+#    #+#              #
-#    Updated: 2022/10/12 19:13:59 by aionescu         ###   ########.fr        #
+#    Updated: 2022/10/15 19:12:48 by aionescu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ LIBFT = libft.a
 LIBMLX = libmlx.a
 
 SRC = main.c process_gamedata.c process_nsew.c process_floor_ceiling.c \
-		process_layout.c
+		process_layout.c file_structure_check.c parsing_utils.c \
+		missing_info_check.c
 
 # OBJ = main.o process_gamedata.o process_nsew.o process_floor_ceiling.o \
 # 		process_layout.o
