@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:09:18 by aionescu          #+#    #+#             */
-/*   Updated: 2022/10/15 19:31:35 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/10/18 19:02:09 by lorfanu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void	print_gamedata(t_gamedata *gamedata)
 	printf("\n");
 }
 
-int	main(int argc, char **argv)
+int main(int argc, char **argv)
 {
 	t_gamedata		gamedata;
 	// t_resolution	resolution;

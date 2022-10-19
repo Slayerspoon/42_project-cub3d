@@ -3,15 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:12:17 by aionescu          #+#    #+#             */
-/*   Updated: 2022/10/15 19:12:14 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/10/18 18:23:02 by lorfanu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
-# define CUB3D_H "cub3d.h"
+# define CUB3D_H
+
+# if __linux__
+#  include "mlx/mlx.h"
+# else 
+#  include "../mlx/mlx.h"
+# endif
+
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
@@ -73,5 +80,6 @@ char	process_ceiling(char *line, t_gamedata *gamedata);
 
 /* process_layout.c */
 char	process_layout(char *start, t_gamedata *gamedata);
+
 
 #endif
