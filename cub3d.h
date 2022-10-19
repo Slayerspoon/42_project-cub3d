@@ -6,7 +6,7 @@
 /*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:12:17 by aionescu          #+#    #+#             */
-/*   Updated: 2022/10/15 19:12:14 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/10/19 20:19:52 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,12 @@ int		file_structure_check(char *filename);
 void	update_counters(char *line_start, int *counters);
 int		missing_info_check(char *start);
 
+/* layout_logic_check.c */
+int		check_for_NSEW0(t_gamedata *gamedata, int row, int col);
+int		check_walls_updown(t_gamedata *gamedata);
+int		check_walls_leftright(t_gamedata *gamedata);
+int		layout_logic_check(t_gamedata *gamedata);
+
 /* process_gamedata.c */
 char	*read_to_string(int fd);
 char	first_nonspace_char(char *line);
@@ -66,6 +72,7 @@ char	process_east(char *line, t_gamedata *gamedata);
 char	process_west(char *line, t_gamedata *gamedata);
 
 /* process_floor_ceiling.c */
+int		check_if_nums_before_nl(char *start_ptr);
 int		go_to_next_colorcode(char *line, int start);
 int		get_colorcode(char *start_ptr);
 char	process_floor(char *line, t_gamedata *gamedata);

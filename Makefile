@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+         #
+#    By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/23 19:30:15 by aionescu          #+#    #+#              #
-#    Updated: 2022/10/18 18:00:20 by lorfanu          ###   ########.fr        #
+#    Updated: 2022/10/19 20:52:38 by aionescu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME = cub3d
 SRC		=	main.c \
 			file_structure_check.c \
 			missing_info_check.c \
+			layout_logic_check.c \
 			parsing_utils.c \
 			process_gamedata.c \
 			process_nsew.c \

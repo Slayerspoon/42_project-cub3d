@@ -6,11 +6,31 @@
 /*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 19:53:30 by aionescu          #+#    #+#             */
-/*   Updated: 2022/10/14 20:38:33 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/10/19 18:34:20 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+// This function checks if there are any digits left in the current string
+// before encountering a '\n' or a '\0'.
+// Returns 0 if false, or 1 if true.
+int	check_if_nums_before_nl(char *start_ptr)
+{
+	int	index;
+	int	flag_num;
+
+	flag_num = 0;
+	index = 0;
+	while (start_ptr[index] != '\n' && start_ptr[index] != '\0'
+		&& flag_num == 0)
+	{
+		if (ft_isdigit(start_ptr[index]))
+			flag_num++;
+		index++;
+	}
+	return (flag_num);
+}
 
 // This function is used to navigate to the next color code in the line read
 // from the input file. It goes past the current color code, past the comma
@@ -23,6 +43,12 @@ int	go_to_next_colorcode(char *line, int start)
 	index = start;
 	while (ft_isdigit(line[index]))
 		index++;
+	if (check_if_nums_before_nl(line + index) == 0)
+	{
+		while (line[index] != '\n' && line[index] != '\0')
+			index++;
+		return (index);
+	}
 	while (line[index] != ',')
 		index++;
 	while (!ft_isdigit(line[index]))
@@ -72,7 +98,7 @@ char	process_floor(char *line, t_gamedata *gamedata)
 		while (line[index] == ' ' || line[index] == '\t')
 			index++;
 		index_rgb = 0;
-		while (index_rgb < 3)
+		while (index_rgb < 3 && check_if_nums_before_nl(line + index) == 1)
 		{
 			gamedata->map_floorcolor[index_rgb] = get_colorcode(line + index);
 			index_rgb++;
@@ -100,7 +126,7 @@ char	process_ceiling(char *line, t_gamedata *gamedata)
 		while (line[index] == ' ' || line[index] == '\t')
 			index++;
 		index_rgb = 0;
-		while (index_rgb < 3)
+		while (index_rgb < 3 && check_if_nums_before_nl(line + index) == 1)
 		{
 			gamedata->map_ceilingcolor[index_rgb] = get_colorcode(line + index);
 			index_rgb++;

@@ -6,7 +6,7 @@
 /*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:09:18 by aionescu          #+#    #+#             */
-/*   Updated: 2022/10/15 19:31:35 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/10/19 20:35:46 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,8 +126,13 @@ int	main(int argc, char **argv)
 		printf("Error:\nInvalid map information provided.\n");
 		return (1);
 	}
-	// LEFT OFF HERE! Everything in the flow up to this point has been implemented and needs to be tested!
-	print_gamedata(&gamedata);
+	// print_gamedata(&gamedata);
+	if (layout_logic_check(&gamedata) != 0)
+	{
+		printf("Error:\nInvalid game map layout provided.\n");
+		return (1);
+	}
+	printf("No errors so far?\n");
 	// if (set_resolution(&resolution, gamedata) != 0)
 	// {
 	// 	printf("Error:\nThe provided map is too big.\n");
