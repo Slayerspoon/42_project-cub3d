@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:09:18 by aionescu          #+#    #+#             */
-/*   Updated: 2022/10/19 20:35:46 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/10/20 16:53:15 by lorfanu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,29 +110,51 @@ void	print_gamedata(t_gamedata *gamedata)
 	printf("\n");
 }
 
+void	check_all_file(char *argv)
+{
+	int		fd;
+
+	fd = open(argv, O_RDONLY);
+	if (fd < 0)
+	{
+		ft_putstr_fd("Ntz ntz -wrong path\n", 1);
+		exit(1);
+		//maybe some freeing will be needed
+	}
+	read_and_init_element(fd);
+//function to validate the map to be added here
+}
+
 int	main(int argc, char **argv)
 {
-	t_gamedata		gamedata;
+	t_gamedata		*gamedata;
 	// t_resolution	resolution;
 
+	gamedata = ft_t_gamedata();
 	if (argc != 2 || file_structure_check(argv[1]) != 0)
 	{
 		printf("Error:\nInvalid map provided.\n");
 		return (1);
 	}
-	initialize_gamedata(&gamedata);
-	if (argc != 2 || process_gamedata(argv[1], &gamedata) != 0)
-	{
-		printf("Error:\nInvalid map information provided.\n");
-		return (1);
-	}
-	// print_gamedata(&gamedata);
-	if (layout_logic_check(&gamedata) != 0)
-	{
-		printf("Error:\nInvalid game map layout provided.\n");
-		return (1);
-	}
-	printf("No errors so far?\n");
+	// initialize_gamedata(gamedata);
+	gamedata->mlx = mlx_init();
+	check_all_file(argv[1]);
+	gamedata->win = mlx_new_window(gamedata->mlx, \
+			640, 640, "cube3D");
+		gamedata->img = mlx_new_image(gamedata->mlx, 640, 640);
+	// if (argc != 2 || process_gamedata(argv[1], &gamedata) != 0)
+	// {
+	// 	printf("Error:\nInvalid map information provided.\n");
+	// 	return (1);
+	// }
+	// // print_gamedata(&gamedata);
+	// if (layout_logic_check(&gamedata) != 0)
+	// {
+	// 	printf("Error:\nInvalid game map layout provided.\n");
+	// 	return (1);
+	// }
+	// printf("No errors so far?\n");
+	//
 	// if (set_resolution(&resolution, gamedata) != 0)
 	// {
 	// 	printf("Error:\nThe provided map is too big.\n");

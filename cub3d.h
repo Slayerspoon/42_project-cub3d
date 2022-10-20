@@ -3,21 +3,58 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:12:17 by aionescu          #+#    #+#             */
-/*   Updated: 2022/10/19 20:19:52 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/10/20 16:57:17 by lorfanu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
-# define CUB3D_H "cub3d.h"
+# define CUB3D_H
+
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
 # include <fcntl.h>
 # include "./mlx/mlx.h"
 # include "./libft/libft.h"
+
+enum	e_element
+{
+	NO = 1,
+	SO = 2,
+	WE = 3,
+	EA = 4,
+	F = 5,
+	C = 6,
+	UNK = 7,
+};
+
+typedef struct s_texture
+{
+	int			txt;
+	void		*img;
+	int			width;
+	int			height;
+	float		pix_x;
+	float		pix_y;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+}				t_texture;
+
+typedef struct s_img
+{
+	t_texture	*no;
+	t_texture	*so;
+	t_texture	*we;
+	t_texture	*ea;
+	int			f;
+	int			c;
+	int			init;
+}				t_img;
 
 typedef struct s_gamedata
 {
@@ -27,8 +64,12 @@ typedef struct s_gamedata
 	char	*map_nsew[4];
 	int		map_floorcolor[3];
 	int		map_ceilingcolor[3];
-	void	**imgs;
+	char	*img;
 	int		moves;
+	int		map_y;
+	int		map_x;
+	int		pos;
+	int		init;
 }	t_gamedata;
 
 typedef struct s_resolution {
@@ -42,6 +83,8 @@ int		exit_game(t_gamedata *gamedata);
 
 /* parsing_utils.c */
 char	first_nonspace_char(char *line);
+int		check_white_spaces(char c);
+char	*get_next_line(int fd);
 
 /* file_structure_check.c */
 int		check_element_beginning(char *l);
@@ -80,5 +123,20 @@ char	process_ceiling(char *line, t_gamedata *gamedata);
 
 /* process_layout.c */
 char	process_layout(char *start, t_gamedata *gamedata);
+
+/* elements_check.c */
+
+void	check_all_file(char *argv);
+void	read_and_init_element(int fd);
+int		find_element(char *element, int fd);
+int		check_identifier(t_img *img, char *temp);
+
+/* texture_utils.c */
+
+t_img	*ft_t_img(void);
+t_gamedata	*ft_t_gamedata(void);
+int		init_element(char *element, int val);
+void	init_texture(t_gamedata *gdata, t_texture *txt, char *elem, int val);
+void	init_color(int *color, char *element);
 
 #endif
