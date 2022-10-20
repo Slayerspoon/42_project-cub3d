@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+         #
+#    By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/23 19:30:15 by aionescu          #+#    #+#              #
-#    Updated: 2022/10/19 20:52:38 by aionescu         ###   ########.fr        #
+#    Updated: 2022/10/20 17:00:15 by lorfanu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,8 @@ SRC		=	main.c \
 			process_floor_ceiling.c \
 			process_layout.c \
 			get_next_line.c \
+			elements_check.c \
+			texture_utils.c \
 		
 CC		=	gcc
 CFLAGS	=	-Wall -Wextra -Werror
