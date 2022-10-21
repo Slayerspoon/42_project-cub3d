@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 16:11:04 by aionescu          #+#    #+#             */
-/*   Updated: 2022/10/20 15:57:32 by lorfanu          ###   ########.fr       */
+/*   Updated: 2022/10/15 16:11:44 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,4 @@ char	first_nonspace_char(char *line)
 		index++;
 	}
 	return ('\0');
-}
-
-int	check_white_spaces(char c)
-{
-	if (c == 32 || (c >= 9 && c <= 13))
-		return (1);
-	return (0);
 }
