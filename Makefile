@@ -3,59 +3,54 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+         #
+#    By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/23 19:30:15 by aionescu          #+#    #+#              #
-#    Updated: 2022/10/21 17:50:20 by aionescu         ###   ########.fr        #
+#    Updated: 2022/10/21 18:40:37 by lorfanu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 
-SRC		=	main.c \
-			file_structure_check.c \
-			missing_info_check.c \
-			layout_logic_check.c \
-			parsing_utils.c \
-			process_gamedata.c \
-			process_nsew.c \
-			process_floor_ceiling.c \
-			process_layout.c \
-			parse_and_report.c \
-			get_next_line.c \
-			elements_check.c \
-			texture_utils.c \
-		
-CC		=	gcc
-CFLAGS	=	-Wall -Wextra -Werror
-
-LIBFT_DIR = libft/
 LIBFT = libft.a
-UNAME_S := $(shell uname -s)
-MINILBX_DIR = mlx/
-ifeq ($(UNAME_S), Darwin)
-	MINILBX = libmlx.a
-endif
-ifeq ($(UNAME_S), Linux)
-	MINILBX = libmlx_Linux.a
-endif
 
-$(NAME):
-	$(MAKE) all -C $(LIBFT_DIR)
-	$(MAKE) -C $(MINILBX_DIR)
-	$(CC) $(CFLAGS) $(SRC) $(LIBFT_DIR)$(LIBFT) $(MINILBX_DIR)$(MINILBX) \
-		-L/usr/X11/include/../lib -lXext -lX11 -lm -lz -o $(NAME)
+LIBMLX = libmlx.a
+
+SRC = main.c process_gamedata.c process_nsew.c process_floor_ceiling.c \
+		process_layout.c file_structure_check.c parsing_utils.c \
+		missing_info_check.c layout_logic_check.c parse_and_report.c \
+
+# OBJ = main.o process_gamedata.o process_nsew.o process_floor_ceiling.o \
+# 		process_layout.o
 
 all: $(NAME)
 
+# $(NAME): $(OBJ) $(LIBFT) $(LIBMLX) 
+# 	$(CC) $(OBJ) $(LIBFT) $(LIBMLX) -L/usr/X11/lib -lXext -lX11 -g -o $(NAME)
+# 	chmod a+x $(NAME)
+
+$(NAME): $(LIBFT)
+	$(CC) -Wall -Wextra -Werror $(SRC) $(LIBFT) -o $(NAME)
+	rm -f *.o
+	chmod a+x $(NAME)
+
+# $(OBJ): $(SRC)
+# 	$(CC) -Wall -Wextra -Werror -Imlx -c $(SRC)
+
+$(LIBFT):
+	cd libft && $(MAKE)
+	mv libft/libft.a libft.a
+
+$(LIBMLX):
+	cd mlx && $(MAKE)
+	mv mlx/libmlx.a libmlx.a
+
 clean:
-	$(MAKE) clean -C $(MINILBX_DIR)
-	$(MAKE) clean -C $(LIBFT_DIR)
+	rm -f *.o
 
 fclean: clean
-	$(MAKE) fclean -C $(LIBFT_DIR)
 	rm -f $(NAME)
 
-re: fclean all
+re:	fclean all
 
 .PHONY: all clean fclean re
