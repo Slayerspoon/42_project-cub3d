@@ -6,7 +6,7 @@
 #    By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/23 19:30:15 by aionescu          #+#    #+#              #
-#    Updated: 2022/10/19 20:52:38 by aionescu         ###   ########.fr        #
+#    Updated: 2022/10/21 17:50:20 by aionescu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,10 @@ SRC		=	main.c \
 			process_nsew.c \
 			process_floor_ceiling.c \
 			process_layout.c \
+			parse_and_report.c \
 			get_next_line.c \
+			elements_check.c \
+			texture_utils.c \
 		
 CC		=	gcc
 CFLAGS	=	-Wall -Wextra -Werror

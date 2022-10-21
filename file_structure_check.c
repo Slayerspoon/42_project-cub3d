@@ -6,7 +6,7 @@
 /*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 15:36:28 by aionescu          #+#    #+#             */
-/*   Updated: 2022/10/15 19:35:48 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/10/20 20:17:30 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	check_layout(char *start)
 		&& first_nonspace_char(start + index) != '\0')
 	{
 		if (first_nonspace_char(start + index) != '1')
-			return (1);
+			return (11);
 		while (start[index] != '\n' && start[index] != '\0')
 			index++;
 		index++;
@@ -31,7 +31,7 @@ int	check_layout(char *start)
 	while (start[index] != '\0')
 	{
 		if (start[index] != ' ' && start[index] != '\t' && start[index] != '\n')
-			return (1);
+			return (12);
 		index++;
 	}
 	return (0);
@@ -57,7 +57,7 @@ int	check_element_beginning(char *l)
 		&& ft_strncmp(l + i, "WE ", 3) != 0 && ft_strncmp(l + i, "WE\t", 3) != 0
 		&& ft_strncmp(l + i, "F ", 2) != 0 && ft_strncmp(l + i, "F\t", 2) != 0
 		&& ft_strncmp(l + i, "C ", 2) != 0 && ft_strncmp(l + i, "C\t", 2) != 0)
-		return (1);
+		return (13);
 	return (0);
 }
 
@@ -78,9 +78,9 @@ int	check_lines(char *lines_as_str)
 			&& first_nonspace_char(lines_as_str + index) != 'F'
 			&& first_nonspace_char(lines_as_str + index) != 'C'
 			&& first_nonspace_char(lines_as_str + index) != '1')
-			return (1);
+			return (10);
 		if (check_element_beginning(lines_as_str + index) != 0)
-			return (1);
+			return (check_element_beginning(lines_as_str + index));
 		while (lines_as_str[index] != '\n' && lines_as_str[index] != '\0')
 			index++;
 		index++;

@@ -6,7 +6,7 @@
 /*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 18:37:55 by aionescu          #+#    #+#             */
-/*   Updated: 2022/10/15 19:11:00 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/10/20 20:12:11 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	missing_info_check(char *start)
 	while (index < 7)
 	{
 		if (elements[index] == 0)
-			return (index + 1);
+			return (index + 3);
 		index++;
 	}
 	return (0);

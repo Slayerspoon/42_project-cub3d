@@ -6,7 +6,7 @@
 /*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 16:54:27 by aionescu          #+#    #+#             */
-/*   Updated: 2022/10/19 20:45:38 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/10/21 17:14:50 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	check_for_nsewzero(t_gamedata *gamedata, int row, int col)
 		|| gamedata->map_layout[row][col - 1] == ' '
 		|| gamedata->map_layout[row][col + 1] == ' '
 		|| gamedata->map_layout[row + 1][col] == ' ')
-		return (1);
+		return (25);
 	else
 		return (0);
 }
@@ -40,14 +40,14 @@ int	check_walls_updown(t_gamedata *gamedata)
 		while (gamedata->map_layout[row][col] == ' ')
 			row++;
 		if (gamedata->map_layout[row][col] != '1')
-			return (1);
+			return (23);
 		row = 0;
 		while (gamedata->map_layout[row][col] != '\0')
 			row++;
 		while (gamedata->map_layout[row - 1][col] == ' ')
 			row--;
 		if (gamedata->map_layout[row - 1][col] != '1')
-			return (1);
+			return (24);
 		row = 0;
 		col++;
 	}
@@ -68,12 +68,12 @@ int	check_walls_leftright(t_gamedata *gamedata)
 		while (gamedata->map_layout[row][col] == ' ')
 			col++;
 		if (gamedata->map_layout[row][col] != '1')
-			return (1);
+			return (21);
 		col = 0;
 		while (gamedata->map_layout[row][col] != '\0')
 			col++;
 		if (gamedata->map_layout[row][col - 1] != '1')
-			return (1);
+			return (22);
 		col = 0;
 		row++;
 	}

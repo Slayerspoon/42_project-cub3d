@@ -1,6 +1,6 @@
 NO ./Texture/colorstone.xpm
 SO ./Texture/redbrick.xpm
-WE ./Texture/wood.xpm
+WE    			./Texture/wood.xpm
 EA ./Texture/redbrick.xpm
 
 F 100,100,4234234
