@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+         #
+#    By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/23 19:30:15 by aionescu          #+#    #+#              #
-#    Updated: 2022/10/21 18:40:37 by lorfanu          ###   ########.fr        #
+#    Updated: 2022/10/24 19:52:29 by aionescu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ LIBMLX = libmlx.a
 
 SRC = main.c process_gamedata.c process_nsew.c process_floor_ceiling.c \
 		process_layout.c file_structure_check.c parsing_utils.c \
-		missing_info_check.c layout_logic_check.c parse_and_report.c \
+		missing_info_check.c layout_logic_check.c extra_checks.c \
+		parse_and_report.c
 
 # OBJ = main.o process_gamedata.o process_nsew.o process_floor_ceiling.o \
 # 		process_layout.o

@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   extra_checks.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/14 17:15:11 by lorfanu           #+#    #+#             */
-/*   Updated: 2022/10/24 18:10:19 by aionescu         ###   ########.fr       */
+/*   Created: 2022/10/24 18:13:55 by aionescu          #+#    #+#             */
+/*   Updated: 2022/10/24 20:10:24 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-char	*get_next_line(int fd)
+// This function checks if the provided texture paths are accessible.
+int	path_nsew_check(t_gamedata *gamedata)
 {
-	char	line[10000];
-	char	*buf;
-	char	*trimmed;
-	int		test;
+	int	index;
+	int	fd;
 
-	buf = line;
-	test = 0;
-	while (read(fd, buf, 1) > 0 && *buf++ != '\n')
-		test++;
-	if (buf > line)
+	fd = 0;
+	index = 0;
+	while (index < 4)
 	{
-		*buf = 0;
-		trimmed = ft_strtrim(line, " 	\n");
-		return (trimmed);
+		fd = open(gamedata->map_nsew[index], O_RDONLY);
+		if (fd == -1)
+			return (31 + index);
+		close(fd);
+		index++;
 	}
-	else
-		return (NULL);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 16:11:04 by aionescu          #+#    #+#             */
-/*   Updated: 2022/10/21 17:26:39 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/10/24 19:54:33 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ char	first_nonspace_char(char *line)
 	return ('\0');
 }
 
+// This function checks if the passed character c is a whitespace character.
 int	check_white_spaces(char c)
 {
 	if (c == 32 || (c >= 9 && c <= 13))

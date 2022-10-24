@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:12:17 by aionescu          #+#    #+#             */
-/*   Updated: 2022/10/21 18:34:40 by lorfanu          ###   ########.fr       */
+/*   Updated: 2022/10/24 19:55:44 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
-# define CUB3D_H
+# define CUB3D_H "cub3d.h"
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -64,6 +64,9 @@ int		check_for_NSEW0(t_gamedata *gamedata, int row, int col);
 int		check_walls_updown(t_gamedata *gamedata);
 int		check_walls_leftright(t_gamedata *gamedata);
 int		layout_logic_check(t_gamedata *gamedata);
+
+/* extra_checks.c */
+int		path_nsew_check(t_gamedata *gamedata);
 
 /* process_gamedata.c */
 char	*read_to_string(int fd);
