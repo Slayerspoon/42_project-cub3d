@@ -6,11 +6,63 @@
 /*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:54:53 by aionescu          #+#    #+#             */
-/*   Updated: 2022/10/19 19:05:03 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/10/25 19:46:13 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+// This is a helper function used to determine
+// the length of the longest line in the map.
+int	calculate_longest_line(t_gamedata *gamedata)
+{
+	int	col_max;
+	int	row;
+	int	col;
+
+	col_max = 0;
+	row = 0;
+	col = 0;
+	while (gamedata->map_layout[row][0] != '\0')
+	{
+		while (gamedata->map_layout[row][col] != '\0')
+		{
+			if (col > col_max)
+				col_max = col;
+			col++;
+		}
+		col = 0;
+		row++;
+	}
+	col_max++;
+	return (col_max);
+}
+
+// This function refines the map layout into a rectangle and
+// replaces all the whitespaces with the character '1'.
+char	make_rect_and_replace_space(t_gamedata *gamedata)
+{
+	int	longest_line;
+	int	row;
+	int	col;
+
+	longest_line = calculate_longest_line(gamedata);
+	row = 0;
+	col = 0;
+	while (gamedata->map_layout[row][0] != '\0')
+	{
+		while (col < longest_line)
+		{
+			if (gamedata->map_layout[row][col] == ' '
+				|| gamedata->map_layout[row][col] == '\0')
+				gamedata->map_layout[row][col] = '1';
+			col++;
+		}
+		col = 0;
+		row++;
+	}
+	return ('L');
+}
 
 // This function is used to check if there is any non-space character before
 // the end of the current line, starting from the passed pointer.
@@ -63,5 +115,5 @@ char	process_layout(char *p, t_gamedata *gamedata)
 			return ('l');
 		pos++;
 	}
-	return ('L');
+	return (make_rect_and_replace_space(gamedata));
 }

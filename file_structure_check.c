@@ -6,7 +6,7 @@
 /*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 15:36:28 by aionescu          #+#    #+#             */
-/*   Updated: 2022/10/20 20:17:30 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/10/25 19:38:23 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,23 @@ int	check_layout(char *start)
 	return (0);
 }
 
+// This function checks if there are any characters other than digits,
+// whitespaces and commas present in the lines describing the floor and ceiling.
+int	check_clean_fc(char *start)
+{
+	int	index;
+
+	index = 0;
+	while (start[index] != '\n' && start[index] != '\0')
+	{
+		if (ft_isdigit(start[index]) == 0 && start[index] != ' '
+			&& start[index] != '\t' && start[index] != ',')
+			return (13);
+		index++;
+	}
+	return (0);
+}
+
 // This function checks if the first non-space characters in every
 // non-empty line in the input file match valid information type identifiers.
 int	check_element_beginning(char *l)
@@ -58,6 +75,8 @@ int	check_element_beginning(char *l)
 		&& ft_strncmp(l + i, "F ", 2) != 0 && ft_strncmp(l + i, "F\t", 2) != 0
 		&& ft_strncmp(l + i, "C ", 2) != 0 && ft_strncmp(l + i, "C\t", 2) != 0)
 		return (13);
+	if (ft_strncmp(l + i, "F", 1) == 0 || ft_strncmp(l + i, "C", 1) == 0)
+		return (check_clean_fc(l + i + 1));
 	return (0);
 }
 

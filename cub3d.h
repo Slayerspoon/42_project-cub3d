@@ -6,7 +6,7 @@
 /*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:12:17 by aionescu          #+#    #+#             */
-/*   Updated: 2022/10/24 19:55:44 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/10/25 19:39:46 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int		check_white_spaces(char c);
 char	*get_next_line(int fd);
 
 /* file_structure_check.c */
+int		check_layout(char *start);
+int		check_clean_fc(char *start);
 int		check_element_beginning(char *l);
 int		check_lines(char *lines_as_str);
 int		file_structure_check(char *filename);
@@ -89,6 +91,9 @@ char	process_floor(char *line, t_gamedata *gamedata);
 char	process_ceiling(char *line, t_gamedata *gamedata);
 
 /* process_layout.c */
+int		calculate_longest_line(t_gamedata *gamedata);
+char	make_rect_and_replace_space(t_gamedata *gamedata);
+int		empty_space_ahead(char *start_ptr);
 char	process_layout(char *start, t_gamedata *gamedata);
 
 /* parse_and_report.c */
