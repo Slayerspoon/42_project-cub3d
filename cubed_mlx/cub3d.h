@@ -6,7 +6,7 @@
 /*   By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:12:17 by aionescu          #+#    #+#             */
-/*   Updated: 2022/10/27 17:04:06 by lorfanu          ###   ########.fr       */
+/*   Updated: 2022/10/27 18:23:55 by lorfanu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,6 @@ t_img	*put_floor_ceiling(t_gamedata *game);
 void	game_init(t_gamedata *game);
 void	img_init(t_gamedata *game);
 t_img	*img_xpm(t_gamedata *game, char *elem_path);
-void	texture_init(t_gamedata *game);
 int		render_image(t_gamedata *game);
 
 /* keyboard.c */
