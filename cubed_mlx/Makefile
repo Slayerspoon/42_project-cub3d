@@ -6,7 +6,7 @@
 #    By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/23 19:30:15 by aionescu          #+#    #+#              #
-#    Updated: 2022/10/26 20:18:33 by lorfanu          ###   ########.fr        #
+#    Updated: 2022/10/27 17:02:32 by lorfanu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRC		=	main.c \
 			parse_and_report.c \
 			render_floor_ceiling.c \
 			init_and_render_img.c \
+			keyboard.c \
 		
 CC		=	gcc
 CFLAGS_LINUX= -Wall -Wextra -Werror mlx/libmlx.a -lXext -lX11 -lm -lz -o

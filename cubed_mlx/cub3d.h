@@ -6,7 +6,7 @@
 /*   By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:12:17 by aionescu          #+#    #+#             */
-/*   Updated: 2022/10/26 20:20:34 by lorfanu          ###   ########.fr       */
+/*   Updated: 2022/10/27 17:04:06 by lorfanu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@
 # define S_WIDTH 640
 # define TX_HEIGHT 64
 # define TX_WIDTH 64
+
+# define KEY_RIGHT_ARROW 0xFF51
+# define KEY_LEFT_ARROW 0xFF53
+# define KEY_ESCAPE 0xFF1B
 
 typedef struct s_vector {
 	double	x;
@@ -71,7 +75,7 @@ typedef struct s_gamedata
 
 /* main.c */
 int		main(int argc, char **argv);
-void	game_exit(t_gamedata *game, char *err_msg);
+void	game_exit(t_gamedata *game, char *err_msg, int exit_code);
 void	mlx_cleanup(t_gamedata *game);
 
 /* parsing_utils.c */
@@ -145,4 +149,8 @@ void	img_init(t_gamedata *game);
 t_img	*img_xpm(t_gamedata *game, char *elem_path);
 void	texture_init(t_gamedata *game);
 int		render_image(t_gamedata *game);
+
+/* keyboard.c */
+int		handle_game_keys(int key, t_gamedata *game);
+int		game_xbutton(t_gamedata *game);
 #endif
