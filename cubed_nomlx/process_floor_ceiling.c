@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_floor_ceiling.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 19:53:30 by aionescu          #+#    #+#             */
-/*   Updated: 2022/10/26 20:28:49 by lorfanu          ###   ########.fr       */
+/*   Updated: 2022/10/27 18:08:18 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,21 +61,18 @@ int	go_to_next_colorcode(char *line, int start)
 // If the parsed value is higher than 255, the function just returns 255.
 int	get_colorcode(char *start_ptr)
 {
-	char	code_as_chars[3];
+	char	code_as_chars[5];
 	int		index;
-	int		count;
 
-	count = 0;
 	index = 0;
 	while (ft_isdigit(start_ptr[index]))
 	{
-		code_as_chars[count] = start_ptr[index];
-		count++;
+		code_as_chars[index] = start_ptr[index];
 		index++;
-		if (count > 4)
+		if (index > 3)
 			break ;
 	}
-	code_as_chars[count] = '\0';
+	code_as_chars[index] = '\0';
 	if (ft_atoi(code_as_chars) > 255)
 		return (255);
 	else

@@ -6,11 +6,42 @@
 /*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 16:54:27 by aionescu          #+#    #+#             */
-/*   Updated: 2022/10/21 17:14:50 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/10/27 18:31:34 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+// This function checks if the number of player starting positions
+// is greater than 1.
+// Returns 0 in case there is only one, or 35 in case of multiple entries.
+int	check_player(t_gamedata *gamedata)
+{
+	int	row;
+	int	col;
+	int	count;
+
+	count = 0;
+	row = 0;
+	col = 0;
+	while (gamedata->map_layout[row][col] != '\0')
+	{
+		while (gamedata->map_layout[row][col] != '\0')
+		{
+			if (gamedata->map_layout[row][col] == 'N'
+				|| gamedata->map_layout[row][col] == 'S'
+				|| gamedata->map_layout[row][col] == 'E'
+				|| gamedata->map_layout[row][col] == 'W')
+				count++;
+			if (count > 1)
+				return (35);
+			col++;
+		}
+		col = 0;
+		row++;
+	}
+	return (0);
+}
 
 // This function checks if an accessible square in the game is
 // adjacent either to a wall or to another accessible square.
@@ -106,5 +137,6 @@ int	layout_logic_check(t_gamedata *gamedata)
 			col = 0;
 		}
 	}
+	verdict = check_player(gamedata);
 	return (verdict);
 }

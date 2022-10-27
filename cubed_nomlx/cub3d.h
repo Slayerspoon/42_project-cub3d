@@ -6,7 +6,7 @@
 /*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:12:17 by aionescu          #+#    #+#             */
-/*   Updated: 2022/10/25 19:39:46 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/10/27 18:55:44 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,28 @@
 # include "./mlx/mlx.h"
 # include "./libft/libft.h"
 
+typedef struct s_player
+{
+	char	facing;
+	int		x;
+	int		y;
+}	t_player;
+
 typedef struct s_gamedata
 {
-	void	*mlx;
-	void	*win;
-	char	map_layout[100][100];
-	char	*map_nsew[4];
-	int		map_floorcolor[3];
-	int		map_ceilingcolor[3];
-	char	*img;
-	int		moves;
-	int		map_y;
-	int		map_x;
-	int		pos;
-	int		init;
+	void		*mlx;
+	void		*win;
+	char		map_layout[100][100];
+	char		*map_nsew[4];
+	int			map_floorcolor[3];
+	int			map_ceilingcolor[3];
+	t_player	player;
+	char		*img;
+	int			moves;
+	int			map_y;
+	int			map_x;
+	int			pos;
+	int			init;
 }	t_gamedata;
 
 typedef struct s_resolution {
@@ -62,6 +70,7 @@ void	update_counters(char *line_start, int *counters);
 int		missing_info_check(char *start);
 
 /* layout_logic_check.c */
+int		check_player(t_gamedata *gamedata);
 int		check_for_NSEW0(t_gamedata *gamedata, int row, int col);
 int		check_walls_updown(t_gamedata *gamedata);
 int		check_walls_leftright(t_gamedata *gamedata);
@@ -101,5 +110,8 @@ void	report_error_batch_one(int error_code);
 void	report_error_batch_two(int error_code);
 void	report_error_batch_three(int error_code);
 int		parse_and_report(int argc, char **argv, t_gamedata *gamedata);
+
+/* player_movement.c */
+int		update_player_pos(t_gamedata *gamedata);
 
 #endif
