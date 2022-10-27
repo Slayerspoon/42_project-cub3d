@@ -6,7 +6,7 @@
 /*   By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:56:25 by lorfanu           #+#    #+#             */
-/*   Updated: 2022/10/27 18:24:17 by lorfanu          ###   ########.fr       */
+/*   Updated: 2022/10/27 18:44:14 by lorfanu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,17 @@ void	game_exit(t_gamedata *game, char *err_msg, int exit_status)
 		mlx_cleanup(game);
 	if (err_msg)
 		ft_putstr_fd(err_msg, 1);
-	// some extra free ?
+	if (game->map_nsew[0])
+		free(game->map_nsew[0]);
+	if (game->map_nsew[1])
+		free(game->map_nsew[1]);
+	if (game->map_nsew[2])
+		free(game->map_nsew[2]);
+	if (game->map_nsew[3])
+		free(game->map_nsew[3]);
+	if (game->img->imag)
+		free(game->img->imag);
+	if (game->img)
+		free(game->img);
 	exit(exit_status);
 }
