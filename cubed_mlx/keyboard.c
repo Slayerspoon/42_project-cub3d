@@ -6,7 +6,7 @@
 /*   By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:56:25 by lorfanu           #+#    #+#             */
-/*   Updated: 2022/10/31 12:32:02 by lorfanu          ###   ########.fr       */
+/*   Updated: 2022/11/01 21:51:36 by lorfanu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void	free_textures(t_texture *txt, t_img *image, t_gamedata *game)
 		mlx_destroy_image(game->mlx, txt->img_east->imag);
 	if (txt->img_west)
 		mlx_destroy_image(game->mlx, txt->img_west->imag);
+	if (image->imag)
+		mlx_destroy_image(game->mlx, image->imag);
 	if (txt->img_north)
 		free(txt->img_north);
 	if (txt->img_south)
@@ -57,12 +59,8 @@ void	free_textures(t_texture *txt, t_img *image, t_gamedata *game)
 		free(txt->img_west);
 	if (game->tex)
 		free(game->tex);
-	free(txt);
-	if (game->img->imag)
-		free(game->img->imag);
 	if (game->img)
 		free(game->img);
-	free(image);
 }
 
 void	mlx_cleanup(t_gamedata *game)

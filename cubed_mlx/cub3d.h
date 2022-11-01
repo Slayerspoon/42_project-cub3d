@@ -6,7 +6,7 @@
 /*   By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:12:17 by aionescu          #+#    #+#             */
-/*   Updated: 2022/10/27 18:41:08 by lorfanu          ###   ########.fr       */
+/*   Updated: 2022/11/01 21:26:26 by lorfanu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,25 @@
 # define KEY_LEFT_ARROW 0xFF53
 # define KEY_ESCAPE 0xFF1B
 
-typedef struct s_vector {
-	double	x;
-	double	y;
-}				t_vector;
+// typedef struct s_vector {
+// 	double	x;
+// 	double	y;
+// }				t_vector;
 
-typedef struct s_player {
-	t_vector	pos;
-	t_vector	dir;
-	t_vector	pln;
-	double		speed_move;
-	double		speed_rotate;
-}				t_player;
+// typedef struct s_player {
+// 	t_vector	pos;
+// 	t_vector	dir;
+// 	t_vector	pln;
+// 	double		speed_move;
+// 	double		speed_rotate;
+// }				t_player;
+
+typedef struct s_player
+{
+	char	facing;
+	int		x;
+	int		y;
+}	t_player;
 
 typedef struct s_img {
 	void	*imag;
@@ -71,6 +78,7 @@ typedef struct s_gamedata
 	int			map_ceilingcolor[3];
 	t_texture	*tex;
 	t_img		*img;
+	t_player	player;
 }	t_gamedata;
 
 /* main.c */
@@ -95,6 +103,7 @@ void	update_counters(char *line_start, int *counters);
 int		missing_info_check(char *start);
 
 /* layout_logic_check.c */
+int		check_player(t_gamedata *gamedata);
 int		check_for_NSEW0(t_gamedata *gamedata, int row, int col);
 int		check_walls_updown(t_gamedata *gamedata);
 int		check_walls_leftright(t_gamedata *gamedata);
@@ -134,6 +143,9 @@ void	report_error_batch_one(int error_code);
 void	report_error_batch_two(int error_code);
 void	report_error_batch_three(int error_code);
 int		parse_and_report(int argc, char **argv, t_gamedata *gamedata);
+
+/* player_movement.c */
+int		update_player_pos(t_gamedata *gamedata);
 
 /* render_floor_ceiling.c */
 void	game_mlx_pixel_put(t_img *img, int x, int y, int color);
