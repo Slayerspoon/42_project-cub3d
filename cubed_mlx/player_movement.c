@@ -6,7 +6,7 @@
 /*   By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 18:46:28 by aionescu          #+#    #+#             */
-/*   Updated: 2022/11/01 23:03:14 by lorfanu          ###   ########.fr       */
+/*   Updated: 2022/11/02 13:38:32 by lorfanu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ int	update_player_pos(t_gamedata *gamedata)
 
 /*
 ** init direction vector & the 2d raycaster version of camera plane
-** for player facing X (west/east)
-** 0.66 = PLAYER_FOV * -1) / 100
+** for player facing X (west/east), where FOV = field of view (value 66)
+** 0.66 = PLAYER_FOV / 100 (* -1 when is facing W)
 */
 static void	handle_player_face_x(t_gamedata *game, t_player *player)
 {
@@ -66,7 +66,8 @@ static void	handle_player_face_x(t_gamedata *game, t_player *player)
 
 /*
 ** init direction vector & the 2d raycaster version of camera plane
-** for player facing Y (north/south)
+** for player facing Y (north/south), where FOV = field of view (value 66)
+** 0.66 = PLAYER_FOV / 100 (* -1 when is facing south)
 */
 static void	handle_player_face_y(t_gamedata *game, t_player *player)
 {
