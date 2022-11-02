@@ -6,7 +6,7 @@
 #    By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/23 19:30:15 by aionescu          #+#    #+#              #
-#    Updated: 2022/11/01 21:30:11 by lorfanu          ###   ########.fr        #
+#    Updated: 2022/11/01 23:39:33 by lorfanu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,19 +15,19 @@ NAME = cub3d
 SRC		=	main.c \
 			extra_checks.c \
 			file_structure_check.c \
-			missing_info_check.c \
+			init_and_render_img.c \
+			keyboard.c \
 			layout_logic_check.c \
+			missing_info_check.c \
 			parsing_utils.c \
 			process_gamedata.c \
 			process_nsew.c \
 			process_floor_ceiling.c \
 			process_layout.c \
-			get_next_line.c \
+			player_movement.c \
 			parse_and_report.c \
 			render_floor_ceiling.c \
-			init_and_render_img.c \
-			player_movement.c \
-			keyboard.c \
+			raycast.c \
 		
 CC		=	gcc
 CFLAGS_LINUX= -Wall -Wextra -Werror mlx/libmlx.a -lXext -lX11 -lm -lz -o

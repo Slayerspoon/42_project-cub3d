@@ -6,7 +6,7 @@
 /*   By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:12:17 by aionescu          #+#    #+#             */
-/*   Updated: 2022/11/01 21:26:26 by lorfanu          ###   ########.fr       */
+/*   Updated: 2022/11/02 13:29:33 by lorfanu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <fcntl.h>
 # include "./mlx/mlx.h"
 # include "./libft/libft.h"
+# include <math.h>
 
 # define S_HEIGHT 480
 # define S_WIDTH 640
@@ -45,8 +46,12 @@
 typedef struct s_player
 {
 	char	facing;
-	int		x;
-	int		y;
+	double	x;
+	double	y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
 }	t_player;
 
 typedef struct s_img {
@@ -68,6 +73,30 @@ typedef struct s_texture {
 	int		ceiling;
 }	t_texture;
 
+typedef struct s_raycast
+{
+	double	ray_dir_x;
+	double	ray_dir_y;
+	double	camera_x;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	float	perp_wall_dist;
+	int		map_x;
+	int		map_y;
+	int		hit;
+	int		side;
+	int		draw_start;
+	int		draw_end;
+	double	wall_x;
+	int		tex_x;
+	double	step;
+	double	tex_pos;
+	int		step_x;
+	int		step_y;
+}	t_raycast;
+
 typedef struct s_gamedata
 {
 	void		*mlx;
@@ -78,7 +107,8 @@ typedef struct s_gamedata
 	int			map_ceilingcolor[3];
 	t_texture	*tex;
 	t_img		*img;
-	t_player	player;
+	t_player	*player;
+	t_raycast	*ray;
 }	t_gamedata;
 
 /* main.c */
@@ -146,6 +176,7 @@ int		parse_and_report(int argc, char **argv, t_gamedata *gamedata);
 
 /* player_movement.c */
 int		update_player_pos(t_gamedata *gamedata);
+void	player_init(t_gamedata *game, t_player *player);
 
 /* render_floor_ceiling.c */
 void	game_mlx_pixel_put(t_img *img, int x, int y, int color);
@@ -164,4 +195,8 @@ int		render_image(t_gamedata *game);
 /* keyboard.c */
 int		handle_game_keys(int key, t_gamedata *game);
 int		game_xbutton(t_gamedata *game);
+
+/* raycast.c */
+void	raycast(t_gamedata *game);
+
 #endif

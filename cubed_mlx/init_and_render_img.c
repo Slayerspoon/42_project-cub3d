@@ -6,7 +6,7 @@
 /*   By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 20:17:39 by lorfanu           #+#    #+#             */
-/*   Updated: 2022/10/27 17:01:31 by lorfanu          ###   ########.fr       */
+/*   Updated: 2022/11/02 13:29:45 by lorfanu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	render_image(t_gamedata *game)
 	t_img		*image;
 
 	image = put_floor_ceiling(game);
-	// raycast(game);
+	raycast(game);
 	mlx_put_image_to_window(game->mlx, game->win, image->imag, 0, 0);
 	// game->img->imag = image;
 	return (0);
