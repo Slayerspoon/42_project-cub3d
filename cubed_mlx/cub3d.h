@@ -6,7 +6,7 @@
 /*   By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:12:17 by aionescu          #+#    #+#             */
-/*   Updated: 2022/11/02 13:29:33 by lorfanu          ###   ########.fr       */
+/*   Updated: 2022/11/03 18:48:18 by lorfanu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@
 # define S_WIDTH 640
 # define TX_HEIGHT 64
 # define TX_WIDTH 64
+
+# define UP 1
+# define DOWN -1
+# define RIGHT 1
+# define LEFT -1
 
 # define KEY_RIGHT_ARROW 0xFF51
 # define KEY_LEFT_ARROW 0xFF53
@@ -198,5 +203,7 @@ int		game_xbutton(t_gamedata *game);
 
 /* raycast.c */
 void	raycast(t_gamedata *game);
-
+void	init_raycast(int x, t_raycast *ray, t_player *player);
+void	set_player_steps(t_raycast *ray, t_player *p);
+void	raycast_handle_wall_dda(t_raycast *ray);
 #endif
