@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+         #
+#    By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/23 19:30:15 by aionescu          #+#    #+#              #
-#    Updated: 2022/11/01 23:39:33 by lorfanu          ###   ########.fr        #
+#    Updated: 2022/11/04 20:06:01 by aionescu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,14 +31,17 @@ SRC		=	main.c \
 		
 CC		=	gcc
 CFLAGS_LINUX= -Wall -Wextra -Werror mlx/libmlx.a -lXext -lX11 -lm -lz -o
-CFLAGS_MA= -Wall -Wextra -Werror mlx/libmlx.a -L/usr/X11/lib -lXext -lX11 -lm -lz -o
+CFLAGS_MAC= -Wall -Wextra -Werror mlx/libmlx.a /usr/X11/lib/libXext.dylib /usr/X11/lib/libX11.dylib -lm -lz -o
 
 LIBFT_DIR = libft/
 LIBFT = libft/libft.a
-OS := $(shell uname -s)
+
 MINILBX_DIR = ./mlx
 
-ifeq ($(OS), Darwin)
+# OS := $(shell uname -s)
+# ifeq ($(OS),Darwin)
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S), Darwin)
 CFLAGS= $(CFLAGS_MAC)
 else
 CFLAGS= $(CFLAGS_LINUX)
@@ -47,7 +50,7 @@ endif
 $(NAME):
 	$(MAKE) all -C $(LIBFT_DIR)
 	$(MAKE) all -C $(MINILBX_DIR)
-	$(CC)  $(SRC) $(LIBFT) $(CFLAGS) $(NAME)
+	$(CC) $(SRC) $(LIBFT) $(CFLAGS) $(NAME)
 
 all: $(NAME)
 

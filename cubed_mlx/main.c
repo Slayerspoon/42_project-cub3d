@@ -3,37 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:09:18 by aionescu          #+#    #+#             */
-/*   Updated: 2022/11/03 18:45:38 by lorfanu          ###   ########.fr       */
+/*   Updated: 2022/11/04 20:02:54 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// void	initialize_gamedata(t_gamedata *gamedata)
-// {
-// 	for (int i = 0; i < 100; i++)
-// 	{
-// 		for (int j = 0; j < 100; j++)
-// 		{
-// 			gamedata->map_layout[i][j] = '\0';
-// 		}
-// 	}
-// 	for (int k = 0; k < 4; k++)
-// 	{
-// 		gamedata->map_nsew[k] = NULL;
-// 	}
-// 	for (int l = 0; l < 3; l++)
-// 	{
-// 		gamedata->map_floorcolor[l] = 666;
-// 	}
-// 	for (int m = 0; m < 3; m++)
-// 	{
-// 		gamedata->map_ceilingcolor[m] = 666;
-// 	}
-// }
+void	initialize_gamedata(t_gamedata *gamedata)
+{
+	for (int i = 0; i < 100; i++)
+	{
+		for (int j = 0; j < 100; j++)
+		{
+			gamedata->map_layout[i][j] = '\0';
+		}
+	}
+	for (int k = 0; k < 4; k++)
+	{
+		gamedata->map_nsew[k] = NULL;
+	}
+	for (int l = 0; l < 3; l++)
+	{
+		gamedata->map_floorcolor[l] = 666;
+	}
+	for (int m = 0; m < 3; m++)
+	{
+		gamedata->map_ceilingcolor[m] = 666;
+	}
+}
 
 // void	print_gamedata(t_gamedata *gamedata)
 // {
@@ -69,11 +69,11 @@ int	main(int argc, char **argv)
 	t_player	player;
 
 	gamedata.player = &player;
-	// initialize_gamedata(&gamedata);
+	initialize_gamedata(&gamedata);
 	if (parse_and_report(argc, argv, &gamedata) != 0)
 		return (1);
 	// print_gamedata(&gamedata);
-	// printf("No errors so far?\n");
+	printf("No errors so far?\n");
 	player_init(&gamedata, &player);
 	game_init(&gamedata);
 	mlx_loop_hook(gamedata.mlx, render_image, &gamedata);
