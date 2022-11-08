@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_movement.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 18:46:28 by aionescu          #+#    #+#             */
-/*   Updated: 2022/11/02 13:38:32 by lorfanu          ###   ########.fr       */
+/*   Updated: 2022/11/08 20:16:55 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

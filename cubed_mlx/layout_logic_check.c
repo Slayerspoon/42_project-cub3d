@@ -6,7 +6,7 @@
 /*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 16:54:27 by aionescu          #+#    #+#             */
-/*   Updated: 2022/10/27 18:31:34 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/11/08 20:13:40 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,13 @@ int	check_player(t_gamedata *gamedata)
 				|| gamedata->map_layout[row][col] == 'E'
 				|| gamedata->map_layout[row][col] == 'W')
 				count++;
-			if (count > 1)
-				return (35);
 			col++;
 		}
 		col = 0;
 		row++;
 	}
+	if (count != 1)
+		return (35);
 	return (0);
 }
 

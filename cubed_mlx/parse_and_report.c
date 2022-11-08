@@ -6,7 +6,7 @@
 /*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 20:33:43 by aionescu          #+#    #+#             */
-/*   Updated: 2022/11/04 19:46:57 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/11/08 20:15:13 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	report_error_batch_three(int error_code)
 	else if (error_code == 34)
 		printf("Error:\nPath to west texture file is inaccessible.\n");
 	else if (error_code == 35)
-		printf("Error:\nMultiple player starting positions found.\n");
+		printf("Error:\nMultiple or no player starting positions found.\n");
 }
 
 // This function calls all the sub-functions necessary for error-checking,

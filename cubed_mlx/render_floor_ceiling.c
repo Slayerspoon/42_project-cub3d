@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_floor_ceiling.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 17:19:08 by lorfanu           #+#    #+#             */
-/*   Updated: 2022/10/26 20:14:49 by lorfanu          ###   ########.fr       */
+/*   Updated: 2022/11/08 20:16:22 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
