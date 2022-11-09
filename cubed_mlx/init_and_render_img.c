@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_and_render_img.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 20:17:39 by lorfanu           #+#    #+#             */
-/*   Updated: 2022/11/08 20:17:21 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/11/09 16:35:10 by lorfanu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,18 @@ t_img	*img_xpm(t_gamedata *game, char *elem_path)
 	return (img);
 }
 
+int	ft_get_pix_colour(t_img *tex, int x, int y)
+{
+	unsigned int	*addr;
+	int				colour;
+
+	addr = (unsigned int *)tex->addr;
+	colour = 0;
+	if (x >= 0 && y >= 0 && x <= tex->width && y <= tex->height)
+		colour = ((unsigned int *)addr)[64 * y + x];
+	return (colour);
+}
+
 int	render_image(t_gamedata *game)
 {
 	t_img		*image;
@@ -73,6 +85,6 @@ int	render_image(t_gamedata *game)
 	image = put_floor_ceiling(game);
 	raycast(game);
 	mlx_put_image_to_window(game->mlx, game->win, image->imag, 0, 0);
-	// game->img->imag = image;
+	game->img = image;
 	return (0);
 }

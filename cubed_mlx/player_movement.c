@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_movement.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 18:46:28 by aionescu          #+#    #+#             */
-/*   Updated: 2022/11/08 20:16:55 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/11/09 16:44:36 by lorfanu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,11 @@ static void	handle_player_face_y(t_gamedata *game, t_player *player)
 void	player_init(t_gamedata *game, t_player *player)
 {
 	update_player_pos(game);
-	player->x = player->x + 0.5;
-	player->y = player->y + 0.5;
+	player->pos_x = player->x + 0.5;
+	player->pos_y = player->y + 0.5;
 	printf("%c facing: \n", game->player->facing);
+	printf("%f x: \n", game->player->pos_x);
+	printf("%f y: \n", game->player->pos_y);
 	handle_player_face_x(game, player);
 	handle_player_face_y(game, player);
 }

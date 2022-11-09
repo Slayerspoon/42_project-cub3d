@@ -6,7 +6,7 @@
 /*   By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:12:17 by aionescu          #+#    #+#             */
-/*   Updated: 2022/11/03 18:48:18 by lorfanu          ###   ########.fr       */
+/*   Updated: 2022/11/09 16:30:46 by lorfanu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,22 +35,11 @@
 # define KEY_LEFT_ARROW 0xFF53
 # define KEY_ESCAPE 0xFF1B
 
-// typedef struct s_vector {
-// 	double	x;
-// 	double	y;
-// }				t_vector;
-
-// typedef struct s_player {
-// 	t_vector	pos;
-// 	t_vector	dir;
-// 	t_vector	pln;
-// 	double		speed_move;
-// 	double		speed_rotate;
-// }				t_player;
-
 typedef struct s_player
 {
 	char	facing;
+	double	pos_x;
+	double	pos_y;
 	double	x;
 	double	y;
 	double	dir_x;
@@ -82,7 +71,6 @@ typedef struct s_raycast
 {
 	double	ray_dir_x;
 	double	ray_dir_y;
-	double	camera_x;
 	double	side_dist_x;
 	double	side_dist_y;
 	double	delta_dist_x;
@@ -196,6 +184,7 @@ void	game_init(t_gamedata *game);
 void	img_init(t_gamedata *game);
 t_img	*img_xpm(t_gamedata *game, char *elem_path);
 int		render_image(t_gamedata *game);
+int		ft_get_pix_colour(t_img *tex, int x, int y);
 
 /* keyboard.c */
 int		handle_game_keys(int key, t_gamedata *game);
@@ -203,7 +192,9 @@ int		game_xbutton(t_gamedata *game);
 
 /* raycast.c */
 void	raycast(t_gamedata *game);
-void	init_raycast(int x, t_raycast *ray, t_player *player);
 void	set_player_steps(t_raycast *ray, t_player *p);
-void	raycast_handle_wall_dda(t_raycast *ray);
+void	calculate_draw_parameters(t_raycast *ray, t_gamedata *game);
+void	draw_image(int x, t_raycast *ray, t_gamedata *ptr);
+void	raycast_dda(t_raycast *ray, t_gamedata *game);
+
 #endif
