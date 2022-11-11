@@ -6,7 +6,7 @@
 /*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:09:18 by aionescu          #+#    #+#             */
-/*   Updated: 2022/11/08 20:17:05 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/11/11 21:31:45 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,33 +35,53 @@ void	initialize_gamedata(t_gamedata *gamedata)
 	}
 }
 
-// void	print_gamedata(t_gamedata *gamedata)
-// {
-// 	printf("--- GAME MAP START ---\n");
-// 	for (int i = 0; i < 100; i++)
-// 	{
-// 		for (int j = 0; j < 100; j++)
-// 		{
-// 			printf("%c", gamedata->map_layout[i][j]);
-// 		}
-// 		printf("\n");
-// 	}
-// 	printf("---- GAME MAP END ----\n");
-// 	for (int k = 0; k < 4; k++)
-// 	{
-// 		printf("%s\n", gamedata->map_nsew[k]);
-// 	}
-// 	for (int l = 0; l < 3; l++)
-// 	{
-// 		printf("%d ", gamedata->map_floorcolor[l]);
-// 	}
-// 	printf("\n");
-// 	for (int m = 0; m < 3; m++)
-// 	{
-// 		printf("%d ", gamedata->map_ceilingcolor[m]);
-// 	}
-// 	printf("\n");
-// }
+void	print_gamedata(t_gamedata *gamedata)
+{
+	printf("--- INITIAL MAP START ---\n");
+	int	i = 0;
+	int	j = 0;
+	while (gamedata->map_layout[j][i] != '\0')
+	{
+		while (gamedata->map_layout[j][i] != '\0')
+		{
+			printf("%c", gamedata->map_layout[j][i]);
+			i++;
+		}
+		printf("\n");
+		i = 0;
+		j++;
+	}
+	printf("---- INITIAL MAP END ----\n");
+	printf("--- FINAL MAP START ---\n");
+	int	x = 0;
+	int	y = 0;
+	while (gamedata->final_map[y][x] != '\0')
+	{
+		while (gamedata->final_map[y][x] != '\0')
+		{
+			printf("%c", gamedata->final_map[y][x]);
+			x++;
+		}
+		printf("\n");
+		x = 0;
+		y++;
+	}
+	printf("---- FINAL MAP END ----\n");
+	for (int k = 0; k < 4; k++)
+	{
+		printf("%s\n", gamedata->map_nsew[k]);
+	}
+	for (int l = 0; l < 3; l++)
+	{
+		printf("%d ", gamedata->map_floorcolor[l]);
+	}
+	printf("\n");
+	for (int m = 0; m < 3; m++)
+	{
+		printf("%d ", gamedata->map_ceilingcolor[m]);
+	}
+	printf("\n");
+}
 
 int	main(int argc, char **argv)
 {
@@ -72,7 +92,8 @@ int	main(int argc, char **argv)
 	initialize_gamedata(&gamedata);
 	if (parse_and_report(argc, argv, &gamedata) != 0)
 		return (1);
-	// print_gamedata(&gamedata);
+	gamedata.final_map = generate_final_map(&gamedata);
+	print_gamedata(&gamedata);
 	printf("No errors so far?\n");
 	player_init(&gamedata, &player);
 	game_init(&gamedata);

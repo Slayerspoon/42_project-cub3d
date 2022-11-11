@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_and_render_img.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 20:17:39 by lorfanu           #+#    #+#             */
-/*   Updated: 2022/11/09 16:35:10 by lorfanu          ###   ########.fr       */
+/*   Updated: 2022/11/10 18:23:53 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:12:17 by aionescu          #+#    #+#             */
-/*   Updated: 2022/11/09 16:30:46 by lorfanu          ###   ########.fr       */
+/*   Updated: 2022/11/11 21:18:50 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ typedef struct s_gamedata
 	void		*mlx;
 	void		*win;
 	char		map_layout[100][100];
+	char		**final_map;
 	char		*map_nsew[4];
 	int			map_floorcolor[3];
 	int			map_ceilingcolor[3];
@@ -179,7 +180,6 @@ void	render_floor(t_gamedata *game, int y1, int y2, int x);
 t_img	*put_floor_ceiling(t_gamedata *game);
 
 /* init_and_render_img.c */
-
 void	game_init(t_gamedata *game);
 void	img_init(t_gamedata *game);
 t_img	*img_xpm(t_gamedata *game, char *elem_path);
@@ -196,5 +196,12 @@ void	set_player_steps(t_raycast *ray, t_player *p);
 void	calculate_draw_parameters(t_raycast *ray, t_gamedata *game);
 void	draw_image(int x, t_raycast *ray, t_gamedata *ptr);
 void	raycast_dda(t_raycast *ray, t_gamedata *game);
+
+/* final_map.c */
+char	init_face(char nsew);
+void	generate_p_square(char **final_map, t_gamedata *gamedata, int x, int y);
+void	generate_square(char **final_map, t_gamedata *gamedata, int x, int y);
+char	**allocate_final_map(t_gamedata *gamedata, int factor);
+char	**generate_final_map(t_gamedata *gamedata);
 
 #endif

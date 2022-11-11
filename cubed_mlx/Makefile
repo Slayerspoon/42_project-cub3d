@@ -6,11 +6,11 @@
 #    By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/23 19:30:15 by aionescu          #+#    #+#              #
-#    Updated: 2022/11/04 20:06:01 by aionescu         ###   ########.fr        #
+#    Updated: 2022/11/11 19:49:39 by aionescu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = cub3d
+NAME = cub3D
 
 SRC		=	main.c \
 			extra_checks.c \
@@ -28,6 +28,7 @@ SRC		=	main.c \
 			parse_and_report.c \
 			render_floor_ceiling.c \
 			raycast.c \
+			final_map.c
 		
 CC		=	gcc
 CFLAGS_LINUX= -Wall -Wextra -Werror mlx/libmlx.a -lXext -lX11 -lm -lz -o
@@ -38,8 +39,6 @@ LIBFT = libft/libft.a
 
 MINILBX_DIR = ./mlx
 
-# OS := $(shell uname -s)
-# ifeq ($(OS),Darwin)
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S), Darwin)
 CFLAGS= $(CFLAGS_MAC)
