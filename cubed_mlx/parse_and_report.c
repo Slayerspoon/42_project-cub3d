@@ -6,7 +6,7 @@
 /*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 20:33:43 by aionescu          #+#    #+#             */
-/*   Updated: 2022/11/08 20:15:13 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/11/12 21:18:20 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,10 @@ void	report_error_batch_three(int error_code)
 		printf("Error:\nPath to west texture file is inaccessible.\n");
 	else if (error_code == 35)
 		printf("Error:\nMultiple or no player starting positions found.\n");
+	else if (error_code == 36)
+		printf("Error:\nIllegal use of commas identified in input file.\n");
+	else if (error_code == 37)
+		printf("Error:\nMissing color code for floor or ceiling.\n");
 }
 
 // This function calls all the sub-functions necessary for error-checking,
@@ -102,14 +106,14 @@ int	parse_and_report(int argc, char **argv, t_gamedata *gamedata)
 	if (error_code == 0)
 		error_code = layout_logic_check(gamedata);
 	if (error_code == 0)
-		error_code = path_nsew_check(gamedata);
+		error_code = extra_checks(gamedata, argv[1]);
 	if (error_code != 0)
 	{
 		if (1 <= error_code && error_code <= 9)
 			report_error_batch_one(error_code);
 		if (10 <= error_code && error_code <= 25)
 			report_error_batch_two(error_code);
-		if (31 <= error_code && error_code <= 35)
+		if (31 <= error_code && error_code <= 37)
 			report_error_batch_three(error_code);
 		return (error_code);
 	}

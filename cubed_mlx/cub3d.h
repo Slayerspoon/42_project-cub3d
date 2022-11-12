@@ -6,7 +6,7 @@
 /*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:12:17 by aionescu          #+#    #+#             */
-/*   Updated: 2022/11/11 21:18:50 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/11/12 20:54:52 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # define S_WIDTH 640
 # define TX_HEIGHT 64
 # define TX_WIDTH 64
+
+# define MAP_FACTOR 5
 
 # define UP 1
 # define DOWN -1
@@ -134,7 +136,9 @@ int		check_walls_leftright(t_gamedata *gamedata);
 int		layout_logic_check(t_gamedata *gamedata);
 
 /* extra_checks.c */
-int		path_nsew_check(t_gamedata *gamedata);
+int		analyse_split(char **split);
+int		fc_data_check(char *filename);
+int		extra_checks(t_gamedata *gamedata, char *filename);
 
 /* process_gamedata.c */
 char	*read_to_string(int fd);
@@ -198,7 +202,6 @@ void	draw_image(int x, t_raycast *ray, t_gamedata *ptr);
 void	raycast_dda(t_raycast *ray, t_gamedata *game);
 
 /* final_map.c */
-char	init_face(char nsew);
 void	generate_p_square(char **final_map, t_gamedata *gamedata, int x, int y);
 void	generate_square(char **final_map, t_gamedata *gamedata, int x, int y);
 char	**allocate_final_map(t_gamedata *gamedata, int factor);

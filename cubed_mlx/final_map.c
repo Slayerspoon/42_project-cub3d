@@ -6,28 +6,11 @@
 /*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 18:45:55 by aionescu          #+#    #+#             */
-/*   Updated: 2022/11/11 21:36:32 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/11/12 19:35:21 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-// This function returns a special char to describe the player's facing
-// based on the specific character in the initial map.
-// In the final version of the map, there are a total of 8 directions:
-// a for N, c for E, e for S, g for W,
-// b for NE, d for SE, f for SW, h for NW
-char	init_face(char nsew)
-{
-	if (nsew == 'N')
-		return ('a');
-	else if (nsew == 'E')
-		return ('c');
-	else if (nsew == 'S')
-		return ('e');
-	else
-		return ('g');
-}
 
 // This function generates a square of '0's in the final map, but with one
 // special char in the center describing the position and facing of the player.
@@ -35,52 +18,48 @@ void	generate_p_square(char **final_map, t_gamedata *gamedata, int x, int y)
 {
 	int	row;
 	int	col;
-	int	factor;
 
-	factor = 5;
-	row = y * factor;
-	col = x * factor;
-	while (row < y * factor + factor)
+	row = y * MAP_FACTOR;
+	col = x * MAP_FACTOR;
+	while (row < y * MAP_FACTOR + MAP_FACTOR)
 	{
-		while (col < x * factor + factor)
+		while (col < x * MAP_FACTOR + MAP_FACTOR)
 		{
-			if (col == x * factor + factor / 2
-				&& row == y * factor + factor / 2)
-				final_map[row][col] = init_face(gamedata->map_layout[y][x]);
+			if (col == x * MAP_FACTOR + MAP_FACTOR / 2
+				&& row == y * MAP_FACTOR + MAP_FACTOR / 2)
+				final_map[row][col] = gamedata->map_layout[y][x];
 			else
 				final_map[row][col] = '0';
 			col++;
 		}
-		col = x * factor;
+		col = x * MAP_FACTOR;
 		row++;
 	}
 }
 
-// This function generates a square in the final map
+// This function generates a MAP_FACTOR * MAP_FACTOR square in the final map
 // formed out of the char from the initial map at that position.
 void	generate_square(char **final_map, t_gamedata *gamedata, int x, int y)
 {
 	int	row;
 	int	col;
-	int	factor;
 
-	factor = 5;
-	row = y * factor;
-	col = x * factor;
-	while (row < y * factor + factor)
+	row = y * MAP_FACTOR;
+	col = x * MAP_FACTOR;
+	while (row < y * MAP_FACTOR + MAP_FACTOR)
 	{
-		while (col < x * factor + factor)
+		while (col < x * MAP_FACTOR + MAP_FACTOR)
 		{
 			final_map[row][col] = gamedata->map_layout[y][x];
 			col++;
 		}
-		col = x * factor;
+		col = x * MAP_FACTOR;
 		row++;
 	}
 }
 
 // This function calculates the exact number of bytes necessary
-// for the final map and allocates and assembles it in a **char
+// for the final map and allocates and assembles it in a **char.
 char	**allocate_final_map(t_gamedata *gamedata, int factor)
 {
 	char	**allocated_map;
@@ -106,16 +85,15 @@ char	**allocate_final_map(t_gamedata *gamedata, int factor)
 	return (allocated_map);
 }
 
-// This chain of functions allocates memory efficiently for a version
-// of the initial map that has a hard-coded higher "resolution" (now 5x5)
-// for every character in the initially processed map.
+// This chain of functions generates a memory-efficient version
+// of the initial map that has a higher "resolution" defined by MAP_FACTOR.
 char	**generate_final_map(t_gamedata *gamedata)
 {
 	char	**final_map;
 	int		x;
 	int		y;
 
-	final_map = allocate_final_map(gamedata, 5);
+	final_map = allocate_final_map(gamedata, MAP_FACTOR);
 	x = 0;
 	y = 0;
 	while (gamedata->map_layout[y][x] != '\0')

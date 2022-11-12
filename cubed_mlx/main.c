@@ -6,7 +6,7 @@
 /*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:09:18 by aionescu          #+#    #+#             */
-/*   Updated: 2022/11/11 21:31:45 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/11/12 21:35:40 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 
 void	initialize_gamedata(t_gamedata *gamedata)
 {
-	for (int i = 0; i < 100; i++)
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (i++ < 100)
 	{
-		for (int j = 0; j < 100; j++)
-		{
-			gamedata->map_layout[i][j] = '\0';
-		}
+		while (j++ < 100)
+			gamedata->map_layout[i - 1][j - 1] = '\0';
+		j = 0;
 	}
-	for (int k = 0; k < 4; k++)
-	{
-		gamedata->map_nsew[k] = NULL;
-	}
-	for (int l = 0; l < 3; l++)
-	{
-		gamedata->map_floorcolor[l] = 666;
-	}
-	for (int m = 0; m < 3; m++)
-	{
-		gamedata->map_ceilingcolor[m] = 666;
-	}
+	while (j++ < 4)
+		gamedata->map_nsew[j - 1] = NULL;
+	j = 0;
+	while (j++ < 3)
+		gamedata->map_floorcolor[j - 1] = 666;
+	j = 0;
+	while (j++ < 3)
+		gamedata->map_ceilingcolor[j - 1] = 666;
 }
 
 void	print_gamedata(t_gamedata *gamedata)
@@ -94,7 +94,6 @@ int	main(int argc, char **argv)
 		return (1);
 	gamedata.final_map = generate_final_map(&gamedata);
 	print_gamedata(&gamedata);
-	printf("No errors so far?\n");
 	player_init(&gamedata, &player);
 	game_init(&gamedata);
 	mlx_loop_hook(gamedata.mlx, render_image, &gamedata);
