@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 23:37:57 by lorfanu           #+#    #+#             */
-/*   Updated: 2022/11/09 16:42:43 by lorfanu          ###   ########.fr       */
+/*   Updated: 2022/11/13 16:19:10 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,4 +156,5 @@ void	raycast(t_gamedata *game)
 		draw_image(x, ray, game);
 		x++;
 	}
+	free(ray);
 }

@@ -6,7 +6,7 @@
 /*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 18:37:55 by aionescu          #+#    #+#             */
-/*   Updated: 2022/10/20 20:12:11 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/11/13 16:41:04 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,11 @@ int	missing_info_check(char *start)
 	int	elements[7];
 
 	index = 0;
-	while (index++ < 7)
+	while (index < 7)
+	{
 		elements[index] = 0;
+		index++;
+	}
 	index = 0;
 	while (first_nonspace_char(start + index) != '\0')
 	{

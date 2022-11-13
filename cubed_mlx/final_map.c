@@ -6,11 +6,27 @@
 /*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 18:45:55 by aionescu          #+#    #+#             */
-/*   Updated: 2022/11/12 19:35:21 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/11/13 16:35:36 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+// This function iterates through all the *chars contained in **final_map,
+// freeing them, and finally frees **final_map itself.
+void	free_final_map(char **final_map)
+{
+	int	index;
+
+	index = 0;
+	while (final_map[index] != NULL)
+	{
+		free(final_map[index]);
+		index++;
+	}
+	free(final_map[index]);
+	free(final_map);
+}
 
 // This function generates a square of '0's in the final map, but with one
 // special char in the center describing the position and facing of the player.
@@ -74,7 +90,7 @@ char	**allocate_final_map(t_gamedata *gamedata, int factor)
 	while (gamedata->map_layout[y][0] != '\0')
 		y++;
 	side_size = y * factor;
-	allocated_map = ft_calloc(y * factor + 1, sizeof(char *));
+	allocated_map = ft_calloc(y * factor + 1 + 1, sizeof(char *));
 	y = 0;
 	while (y < side_size)
 	{
@@ -82,6 +98,7 @@ char	**allocate_final_map(t_gamedata *gamedata, int factor)
 		y++;
 	}
 	allocated_map[y] = ft_calloc(x * factor + 1, sizeof(char));
+	allocated_map[y + 1] = NULL;
 	return (allocated_map);
 }
 

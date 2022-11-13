@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aionescu <aionescu@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 21:27:02 by aionescu          #+#    #+#             */
-/*   Updated: 2021/05/30 00:48:37 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/11/13 17:40:43 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,11 @@ char	*ft_strdup(const char *s)
 	{
 		length++;
 	}
-	new_str = malloc(length + 1 + 1);
-	if (new_str != NULL)
+	new_str = ft_calloc(length + 1 + 1, sizeof(char));
+	while (index < length)
 	{
-		while (index < length)
-		{
-			new_str[index] = s[index];
-			index++;
-		}
-		new_str[index] = '\0';
+		new_str[index] = s[index];
+		index++;
 	}
 	return (new_str);
 }

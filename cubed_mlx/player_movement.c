@@ -6,7 +6,7 @@
 /*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 18:46:28 by aionescu          #+#    #+#             */
-/*   Updated: 2022/11/10 18:24:06 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/11/13 16:21:11 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,9 @@ void	player_init(t_gamedata *game, t_player *player)
 	update_player_pos(game);
 	player->pos_x = player->x + 0.5;
 	player->pos_y = player->y + 0.5;
-	printf("%c facing: \n", game->player->facing);
-	printf("%f x: \n", game->player->pos_x);
-	printf("%f y: \n", game->player->pos_y);
+	// printf("%c facing: \n", game->player->facing);
+	// printf("%f x: \n", game->player->pos_x);
+	// printf("%f y: \n", game->player->pos_y);
 	handle_player_face_x(game, player);
 	handle_player_face_y(game, player);
 }

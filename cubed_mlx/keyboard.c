@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keyboard.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:56:25 by lorfanu           #+#    #+#             */
-/*   Updated: 2022/11/01 21:51:36 by lorfanu          ###   ########.fr       */
+/*   Updated: 2022/11/13 16:03:36 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,6 @@ void	game_exit(t_gamedata *game, char *err_msg, int exit_status)
 		free(game->map_nsew[3]);
 	if (game->mlx)
 		free(game->mlx);
+	free_final_map(game->final_map);
 	exit(exit_status);
 }

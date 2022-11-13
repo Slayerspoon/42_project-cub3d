@@ -6,7 +6,7 @@
 /*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:12:17 by aionescu          #+#    #+#             */
-/*   Updated: 2022/11/12 20:54:52 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/11/13 16:03:57 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,6 +202,7 @@ void	draw_image(int x, t_raycast *ray, t_gamedata *ptr);
 void	raycast_dda(t_raycast *ray, t_gamedata *game);
 
 /* final_map.c */
+void	free_final_map(char **final_map);
 void	generate_p_square(char **final_map, t_gamedata *gamedata, int x, int y);
 void	generate_square(char **final_map, t_gamedata *gamedata, int x, int y);
 char	**allocate_final_map(t_gamedata *gamedata, int factor);
