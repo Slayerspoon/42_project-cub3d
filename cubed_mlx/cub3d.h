@@ -6,7 +6,7 @@
 /*   By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:12:17 by aionescu          #+#    #+#             */
-/*   Updated: 2022/11/14 17:39:14 by lorfanu          ###   ########.fr       */
+/*   Updated: 2022/11/14 18:58:41 by lorfanu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define TX_HEIGHT 64
 # define TX_WIDTH 64
 
-# define MAP_FACTOR 5
+# define MAP_FACTOR 2
 
 # define UP 1
 # define DOWN -1
