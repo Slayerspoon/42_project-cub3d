@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keyboard_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 16:35:49 by lorfanu           #+#    #+#             */
-/*   Updated: 2022/11/14 16:38:20 by lorfanu          ###   ########.fr       */
+/*   Updated: 2022/11/14 18:32:14 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

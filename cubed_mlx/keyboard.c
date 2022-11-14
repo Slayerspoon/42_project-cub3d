@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keyboard.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:56:25 by lorfanu           #+#    #+#             */
-/*   Updated: 2022/11/14 16:49:20 by lorfanu          ###   ########.fr       */
+/*   Updated: 2022/11/14 18:32:22 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,3 @@ void	rotate_left(t_gamedata *game)
 	game->player->plane_y = old_plane_x * \
 		sin(-ROT_SPEED) + game->player->plane_y * cos(-ROT_SPEED);
 }
-

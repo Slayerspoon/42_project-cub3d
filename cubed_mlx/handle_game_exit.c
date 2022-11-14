@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_game_exit.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 16:49:04 by lorfanu           #+#    #+#             */
-/*   Updated: 2022/11/14 17:52:27 by lorfanu          ###   ########.fr       */
+/*   Updated: 2022/11/14 18:27:32 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,6 @@ void	game_exit(t_gamedata *game, char *err_msg, int exit_status)
 	if (game->mlx)
 		free(game->mlx);
 	free_final_map(game->final_map);
+	free(game->img);
 	exit(exit_status);
 }
