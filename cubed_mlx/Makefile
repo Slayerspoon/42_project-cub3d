@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+         #
+#    By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/23 19:30:15 by aionescu          #+#    #+#              #
-#    Updated: 2022/11/11 19:49:39 by aionescu         ###   ########.fr        #
+#    Updated: 2022/11/14 18:02:19 by lorfanu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,11 @@ NAME = cub3D
 SRC		=	main.c \
 			extra_checks.c \
 			file_structure_check.c \
+			final_map.c \
+			handle_game_exit.c \
 			init_and_render_img.c \
 			keyboard.c \
+			keyboard_utils.c \
 			layout_logic_check.c \
 			missing_info_check.c \
 			parsing_utils.c \
@@ -28,7 +31,6 @@ SRC		=	main.c \
 			parse_and_report.c \
 			render_floor_ceiling.c \
 			raycast.c \
-			final_map.c
 		
 CC		=	gcc
 CFLAGS_LINUX= -Wall -Wextra -Werror mlx/libmlx.a -lXext -lX11 -lm -lz -o

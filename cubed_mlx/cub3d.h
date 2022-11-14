@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:12:17 by aionescu          #+#    #+#             */
-/*   Updated: 2022/11/13 16:03:57 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/11/14 17:39:14 by lorfanu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@
 # define KEY_RIGHT_ARROW 0xFF51
 # define KEY_LEFT_ARROW 0xFF53
 # define KEY_ESCAPE 0xFF1B
+
+# define MOVE_SPEED 0.1
+# define ROT_SPEED 0.1
 
 typedef struct s_player
 {
@@ -109,8 +112,7 @@ typedef struct s_gamedata
 
 /* main.c */
 int		main(int argc, char **argv);
-void	game_exit(t_gamedata *game, char *err_msg, int exit_code);
-void	mlx_cleanup(t_gamedata *game);
+void	initialize_gamedata(t_gamedata *gamedata);
 
 /* parsing_utils.c */
 char	first_nonspace_char(char *line);
@@ -139,6 +141,13 @@ int		layout_logic_check(t_gamedata *gamedata);
 int		analyse_split(char **split);
 int		fc_data_check(char *filename);
 int		extra_checks(t_gamedata *gamedata, char *filename);
+
+/* final_map.c */
+void	free_final_map(char **final_map);
+void	generate_p_square(char **final_map, t_gamedata *gamedata, int x, int y);
+void	generate_square(char **final_map, t_gamedata *gamedata, int x, int y);
+char	**allocate_final_map(t_gamedata *gamedata, int factor);
+char	**generate_final_map(t_gamedata *gamedata);
 
 /* process_gamedata.c */
 char	*read_to_string(int fd);
@@ -184,6 +193,7 @@ void	render_floor(t_gamedata *game, int y1, int y2, int x);
 t_img	*put_floor_ceiling(t_gamedata *game);
 
 /* init_and_render_img.c */
+
 void	game_init(t_gamedata *game);
 void	img_init(t_gamedata *game);
 t_img	*img_xpm(t_gamedata *game, char *elem_path);
@@ -193,6 +203,19 @@ int		ft_get_pix_colour(t_img *tex, int x, int y);
 /* keyboard.c */
 int		handle_game_keys(int key, t_gamedata *game);
 int		game_xbutton(t_gamedata *game);
+void	rotate_left(t_gamedata *game);
+void	rotate_right(t_gamedata *game);
+
+/* keyboard_utils.c */
+void	move_right_d(t_gamedata *game);
+void	move_left_a(t_gamedata *game);
+void	move_forward_w(t_gamedata *game);
+void	move_backward_s(t_gamedata *game);
+
+/* handle_game_exit.c */
+void	free_textures(t_texture *txt, t_img *image, t_gamedata *game);
+void	mlx_cleanup(t_gamedata *game);
+void	game_exit(t_gamedata *game, char *err_msg, int exit_status);
 
 /* raycast.c */
 void	raycast(t_gamedata *game);
@@ -200,12 +223,5 @@ void	set_player_steps(t_raycast *ray, t_player *p);
 void	calculate_draw_parameters(t_raycast *ray, t_gamedata *game);
 void	draw_image(int x, t_raycast *ray, t_gamedata *ptr);
 void	raycast_dda(t_raycast *ray, t_gamedata *game);
-
-/* final_map.c */
-void	free_final_map(char **final_map);
-void	generate_p_square(char **final_map, t_gamedata *gamedata, int x, int y);
-void	generate_square(char **final_map, t_gamedata *gamedata, int x, int y);
-char	**allocate_final_map(t_gamedata *gamedata, int factor);
-char	**generate_final_map(t_gamedata *gamedata);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_floor_ceiling.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 17:19:08 by lorfanu           #+#    #+#             */
-/*   Updated: 2022/11/08 20:16:22 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/11/14 18:01:07 by lorfanu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,8 @@ void	game_mlx_pixel_put(t_img *img, int x, int y, int color)
 	*(unsigned int *)pixel_dst = color;
 }
 
-/* "verLine" ft put into draw_ceiling, draw_floor
-** norminette restriction on no. vars necessitated
-** two sep fts to draw floor and ceiling.
-** nested while loop draws vertical lines
+/* 
+**
 */
 
 void	render_ceiling(t_gamedata *game, int y1, int y2, int x)

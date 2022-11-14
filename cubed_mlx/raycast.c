@@ -3,17 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 23:37:57 by lorfanu           #+#    #+#             */
-/*   Updated: 2022/11/13 16:19:10 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/11/14 17:52:58 by lorfanu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 /*
-** function to calculate the steps taken by the player
+** function to calculate the steps taken by the player and initial sideDist
+** LEFT - west
+** RIGHT - east
+** DOWN - SOUTH
+** UP - NORTH
 */
 void	set_player_steps(t_raycast *ray, t_player *p)
 {
@@ -65,10 +69,10 @@ void	calculate_draw_parameters(t_raycast *ray, t_gamedata *game)
 		ray->wall_x = game->player->pos_x + \
 			ray->perp_wall_dist * ray->ray_dir_x;
 	ray->wall_x -= floor(ray->wall_x);
-	ray->tex_x = (int)(ray->wall_x * (double)game->tex->img_north->height);
+	ray->tex_x = (int)(ray->wall_x * (double)TX_WIDTH);
 	if ((ray->side == 0 && ray->ray_dir_x > 0)
 		|| (ray->side == 1 && ray->ray_dir_y < 0))
-		ray->tex_x = game->tex->img_north->height - ray->tex_x - 1;
+		ray->tex_x = TX_WIDTH - ray->tex_x - 1;
 }
 
 /*
@@ -95,8 +99,8 @@ void	raycast_dda(t_raycast *ray, t_gamedata *game)
 			ray->map_y += ray->step_y;
 			ray->side = 1;
 		}
-		if (game->map_layout[(int)ray->map_y][(int)ray->map_x] \
-			&& game->map_layout[(int)ray->map_y][(int)ray->map_x] == '1')
+		if (game->final_map[(int)ray->map_y][(int)ray->map_x] \
+			&& game->final_map[(int)ray->map_y][(int)ray->map_x] == '1')
 			ray->hit = 1;
 	}
 }
@@ -112,12 +116,12 @@ void	draw_image(int x, t_raycast *ray, t_gamedata *ptr)
 	y = ray->draw_start;
 	while (y < ray->draw_end)
 	{
-		tex_y = (int)ray->tex_pos &(64 - 1);
+		tex_y = (int)ray->tex_pos &(TX_HEIGHT - 1);
 		ray->tex_pos += ray->step;
-		if (ray->side == 0 && ray->ray_dir_x < 0)
+		if (ray->side == 0 && ray->ray_dir_x > 0)
 			game_mlx_pixel_put(ptr->img, x, y, \
 				ft_get_pix_colour(ptr->tex->img_west, ray->tex_x, tex_y));
-		else if (ray->side == 0 && ray->ray_dir_x > 0)
+		else if (ray->side == 0 && ray->ray_dir_x < 0)
 			game_mlx_pixel_put(ptr->img, x, y, \
 				ft_get_pix_colour(ptr->tex->img_east, ray->tex_x, tex_y));
 		else if (ray->side == 1 && ray->ray_dir_y < 0)
@@ -132,29 +136,26 @@ void	draw_image(int x, t_raycast *ray, t_gamedata *ptr)
 
 void	raycast(t_gamedata *game)
 {
-	t_raycast	*ray;
+	t_raycast	ray;
 	int			x;
 
-	ray = ft_calloc(sizeof(t_raycast), 1);
-	game->ray = ray;
 	x = 0;
 	while (x < S_WIDTH)
 	{
-		ray->ray_dir_x = game->player->dir_x + \
-			0.66 * game->player->dir_y * (2 * x / (float)S_WIDTH - 1) * -1;
-		ray->ray_dir_y = game->player->dir_y + \
-			0.66 * game->player->dir_x * (2 * x / (float)S_WIDTH - 1);
-		ray->map_x = (int)game->player->pos_x;
-		ray->map_y = (int)game->player->pos_y;
-		set_player_steps(ray, game->player);
-		raycast_dda(ray, game);
-		calculate_draw_parameters(ray, game);
-		ray->step = 1.0 * game->tex->img_north->height / \
-			(int)(S_HEIGHT / ray->perp_wall_dist);
-		ray->tex_pos = (ray->draw_start - S_HEIGHT / 2 + \
-				(int)(S_HEIGHT / ray->perp_wall_dist) / 2) * ray->step;
-		draw_image(x, ray, game);
+		ray.ray_dir_x = game->player->dir_x + game->player->plane_x * \
+			(2 * x / (float)S_WIDTH - 1);
+		ray.ray_dir_y = game->player->dir_y + game->player->plane_y * \
+			(2 * x / (float)S_WIDTH - 1);
+		ray.map_x = (int)game->player->pos_x;
+		ray.map_y = (int)game->player->pos_y;
+		set_player_steps(&ray, game->player);
+		raycast_dda(&ray, game);
+		calculate_draw_parameters(&ray, game);
+		ray.step = 1.0 * game->tex->img_north->height / \
+			(int)(S_HEIGHT / ray.perp_wall_dist);
+		ray.tex_pos = (ray.draw_start - S_HEIGHT / 2 + \
+				(int)(S_HEIGHT / ray.perp_wall_dist) / 2) * ray.step;
+		draw_image(x, &ray, game);
 		x++;
 	}
-	free(ray);
 }

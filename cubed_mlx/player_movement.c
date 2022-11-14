@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_movement.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 18:46:28 by aionescu          #+#    #+#             */
-/*   Updated: 2022/11/13 16:21:11 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/11/14 16:53:23 by lorfanu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ int	update_player_pos(t_gamedata *gamedata)
 
 	row = 0;
 	col = 0;
-	while (gamedata->map_layout[row][col] != '\0')
+	while (gamedata->final_map[row][col] != '\0')
 	{
-		while (gamedata->map_layout[row][col] != '\0')
+		while (gamedata->final_map[row][col] != '\0')
 		{
-			if (gamedata->map_layout[row][col] == 'N'
-				|| gamedata->map_layout[row][col] == 'S'
-				|| gamedata->map_layout[row][col] == 'E'
-				|| gamedata->map_layout[row][col] == 'W')
+			if (gamedata->final_map[row][col] == 'N'
+				|| gamedata->final_map[row][col] == 'S'
+				|| gamedata->final_map[row][col] == 'E'
+				|| gamedata->final_map[row][col] == 'W')
 			{
-				gamedata->player->facing = gamedata->map_layout[row][col];
+				gamedata->player->facing = gamedata->final_map[row][col];
 				gamedata->player->x = col;
 				gamedata->player->y = row;
 				break ;
@@ -50,17 +50,17 @@ static void	handle_player_face_x(t_gamedata *game, t_player *player)
 {
 	if (game->player->facing == 'E')
 	{
-		player->dir_x = 0;
-		player->dir_y = 1;
-		player->plane_x = 0.66;
-		player->plane_y = 0;
+		player->dir_x = 1;
+		player->dir_y = 0;
+		player->plane_x = 0;
+		player->plane_y = -0.66;
 	}
 	else if (game->player->facing == 'W')
 	{
-		player->dir_x = 0;
-		player->dir_y = -1;
-		player->plane_x = -0.66;
-		player->plane_y = 0;
+		player->dir_x = -1;
+		player->dir_y = 0;
+		player->plane_x = 0;
+		player->plane_y = 0.66;
 	}
 }
 
@@ -75,14 +75,14 @@ static void	handle_player_face_y(t_gamedata *game, t_player *player)
 	{
 		player->dir_x = 0;
 		player->dir_y = -1;
-		player->plane_x = 0.66;
+		player->plane_x = -0.66;
 		player->plane_y = 0;
 	}
 	else if (game->player->facing == 'S')
 	{
 		player->dir_x = 0;
 		player->dir_y = 1;
-		player->plane_x = -0.66;
+		player->plane_x = 0.66;
 		player->plane_y = 0;
 	}
 }
@@ -92,9 +92,6 @@ void	player_init(t_gamedata *game, t_player *player)
 	update_player_pos(game);
 	player->pos_x = player->x + 0.5;
 	player->pos_y = player->y + 0.5;
-	// printf("%c facing: \n", game->player->facing);
-	// printf("%f x: \n", game->player->pos_x);
-	// printf("%f y: \n", game->player->pos_y);
 	handle_player_face_x(game, player);
 	handle_player_face_y(game, player);
 }
