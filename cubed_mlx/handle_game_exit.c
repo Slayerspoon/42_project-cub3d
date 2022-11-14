@@ -6,11 +6,25 @@
 /*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 16:49:04 by lorfanu           #+#    #+#             */
-/*   Updated: 2022/11/14 19:36:47 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/11/14 20:16:43 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	free_parsed_gamedata(t_gamedata *game)
+{
+	if (game->map_nsew[0])
+		free(game->map_nsew[0]);
+	if (game->map_nsew[1])
+		free(game->map_nsew[1]);
+	if (game->map_nsew[2])
+		free(game->map_nsew[2]);
+	if (game->map_nsew[3])
+		free(game->map_nsew[3]);
+	if (game->final_map)
+		free_final_map(game->final_map);
+}
 
 void	free_textures(t_texture *txt, t_img *image, t_gamedata *game)
 {
@@ -51,17 +65,10 @@ void	game_exit(t_gamedata *game, char *err_msg, int exit_status)
 		mlx_cleanup(game);
 	if (err_msg)
 		ft_putstr_fd(err_msg, 1);
-	if (game->map_nsew[0])
-		free(game->map_nsew[0]);
-	if (game->map_nsew[1])
-		free(game->map_nsew[1]);
-	if (game->map_nsew[2])
-		free(game->map_nsew[2]);
-	if (game->map_nsew[3])
-		free(game->map_nsew[3]);
+	free_parsed_gamedata(game);
 	if (game->mlx)
 		free(game->mlx);
-	free_final_map(game->final_map);
-	free(game->img);
+	if (game->img)
+		free(game->img);
 	exit(exit_status);
 }

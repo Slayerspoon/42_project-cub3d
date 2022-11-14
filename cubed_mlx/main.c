@@ -6,7 +6,7 @@
 /*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:09:18 by aionescu          #+#    #+#             */
-/*   Updated: 2022/11/14 19:35:14 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/11/14 20:17:31 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ int	main(int argc, char **argv)
 	gamedata.player = &player;
 	initialize_gamedata(&gamedata);
 	if (parse_and_report(argc, argv, &gamedata) != 0)
+	{
+		free_parsed_gamedata(&gamedata);
 		return (1);
+	}
 	gamedata.final_map = generate_final_map(&gamedata);
 	player_init(&gamedata, &player);
 	game_init(&gamedata);

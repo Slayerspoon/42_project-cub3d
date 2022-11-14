@@ -6,7 +6,7 @@
 /*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:12:17 by aionescu          #+#    #+#             */
-/*   Updated: 2022/11/14 19:27:07 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/11/14 20:17:08 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,6 +213,7 @@ void	move_forward_w(t_gamedata *game);
 void	move_backward_s(t_gamedata *game);
 
 /* handle_game_exit.c */
+void	free_parsed_gamedata(t_gamedata *game);
 void	free_textures(t_texture *txt, t_img *image, t_gamedata *game);
 void	mlx_cleanup(t_gamedata *game);
 void	game_exit(t_gamedata *game, char *err_msg, int exit_status);

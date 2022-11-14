@@ -6,7 +6,7 @@
 /*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:16:21 by aionescu          #+#    #+#             */
-/*   Updated: 2022/11/04 19:54:38 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/11/14 20:07:17 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	populate_gamedata(char *source, t_gamedata *gamedata)
 			}
 		}
 		else
-			return (3);
+			return (25);
 	}
 	return (0);
 }

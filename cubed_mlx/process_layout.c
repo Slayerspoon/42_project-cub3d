@@ -6,7 +6,7 @@
 /*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:54:53 by aionescu          #+#    #+#             */
-/*   Updated: 2022/11/04 20:01:42 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/11/14 19:57:50 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ char	make_rect_and_replace_space(t_gamedata *gamedata)
 	int	row;
 	int	col;
 
+	if (layout_logic_check(gamedata) != 0)
+		return ('l');
 	longest_line = calculate_longest_line(gamedata);
 	row = 0;
 	col = 0;
