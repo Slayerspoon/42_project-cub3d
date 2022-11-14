@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:09:18 by aionescu          #+#    #+#             */
-/*   Updated: 2022/11/14 16:53:14 by lorfanu          ###   ########.fr       */
+/*   Updated: 2022/11/14 19:35:14 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,54 +35,6 @@ void	initialize_gamedata(t_gamedata *gamedata)
 		gamedata->map_ceilingcolor[j - 1] = 666;
 }
 
-// void	print_gamedata(t_gamedata *gamedata)
-// {
-// 	printf("--- INITIAL MAP START ---\n");
-// 	int	i = 0;
-// 	int	j = 0;
-// 	while (gamedata->map_layout[j][i] != '\0')
-// 	{
-// 		while (gamedata->map_layout[j][i] != '\0')
-// 		{
-// 			printf("%c", gamedata->map_layout[j][i]);
-// 			i++;
-// 		}
-// 		printf("\n");
-// 		i = 0;
-// 		j++;
-// 	}
-// 	printf("---- INITIAL MAP END ----\n");
-// 	printf("--- FINAL MAP START ---\n");
-// 	int	x = 0;
-// 	int	y = 0;
-// 	while (gamedata->final_map[y][x] != '\0')
-// 	{
-// 		while (gamedata->final_map[y][x] != '\0')
-// 		{
-// 			printf("%c", gamedata->final_map[y][x]);
-// 			x++;
-// 		}
-// 		printf("\n");
-// 		x = 0;
-// 		y++;
-// 	}
-// 	printf("---- FINAL MAP END ----\n");
-// 	for (int k = 0; k < 4; k++)
-// 	{
-// 		printf("%s\n", gamedata->map_nsew[k]);
-// 	}
-// 	for (int l = 0; l < 3; l++)
-// 	{
-// 		printf("%d ", gamedata->map_floorcolor[l]);
-// 	}
-// 	printf("\n");
-// 	for (int m = 0; m < 3; m++)
-// 	{
-// 		printf("%d ", gamedata->map_ceilingcolor[m]);
-// 	}
-// 	printf("\n");
-// }
-
 int	main(int argc, char **argv)
 {
 	t_gamedata	gamedata;
@@ -93,7 +45,6 @@ int	main(int argc, char **argv)
 	if (parse_and_report(argc, argv, &gamedata) != 0)
 		return (1);
 	gamedata.final_map = generate_final_map(&gamedata);
-	// print_gamedata(&gamedata);
 	player_init(&gamedata, &player);
 	game_init(&gamedata);
 	mlx_loop_hook(gamedata.mlx, render_image, &gamedata);

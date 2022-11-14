@@ -6,7 +6,7 @@
 /*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 16:49:04 by lorfanu           #+#    #+#             */
-/*   Updated: 2022/11/14 18:27:32 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/11/14 19:36:47 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,10 @@ void	free_textures(t_texture *txt, t_img *image, t_gamedata *game)
 	if (txt->img_west)
 		free(txt->img_west);
 	free(game->tex);
-	// if (game->img)
-	// 	free(game->img);
 }
 
 void	mlx_cleanup(t_gamedata *game)
 {
-	// if (game->img->imag)
-	// 	free(game->img->imag);
 	if (game->tex)
 		free_textures(game->tex, game->img, game);
 	if (game->win)
