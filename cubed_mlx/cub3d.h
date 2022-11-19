@@ -6,7 +6,7 @@
 /*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:12:17 by aionescu          #+#    #+#             */
-/*   Updated: 2022/11/14 20:17:08 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/11/19 11:49:45 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,7 +172,7 @@ char	process_ceiling(char *line, t_gamedata *gamedata);
 /* process_layout.c */
 int		calculate_longest_line(t_gamedata *gamedata);
 char	make_rect_and_replace_space(t_gamedata *gamedata);
-int		empty_space_ahead(char *start_ptr);
+int		empty_space_ahead(char *start_ptr, int *pos);
 char	process_layout(char *start, t_gamedata *gamedata);
 
 /* parse_and_report.c */

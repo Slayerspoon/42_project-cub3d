@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_movement.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 18:46:28 by aionescu          #+#    #+#             */
-/*   Updated: 2022/11/14 19:25:50 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/11/17 19:05:40 by lorfanu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,14 @@ static void	handle_player_face_x(t_gamedata *game, t_player *player)
 		player->dir_x = 1;
 		player->dir_y = 0;
 		player->plane_x = 0;
-		player->plane_y = -0.66;
+		player->plane_y = 0.66;
 	}
 	else if (game->player->facing == 'W')
 	{
 		player->dir_x = -1;
 		player->dir_y = 0;
 		player->plane_x = 0;
-		player->plane_y = 0.66;
+		player->plane_y = -0.66;
 	}
 }
 

@@ -6,18 +6,23 @@
 /*   By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 23:37:57 by lorfanu           #+#    #+#             */
-/*   Updated: 2022/11/14 17:52:58 by lorfanu          ###   ########.fr       */
+/*   Updated: 2022/11/17 17:38:16 by lorfanu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 /*
-** function to calculate the steps taken by the player and initial sideDist
-** LEFT - west
-** RIGHT - east
+** function to calculate the steps taken by the player and initial side_dist
+** DeltaDistX and deltaDistY are the distance the ray has to travel to go from 
+** 1 x-side to the next x-side, or from 1 y-side to the next y-side;
+** LEFT - WEST
+** RIGHT - EAST
 ** DOWN - SOUTH
 ** UP - NORTH
+** SideDistX and sideDistY are initially the distance the ray has to travel
+** from its start position to the first x-side and the first y-side
+** Later in the code they will be incremented while steps are taken.
 */
 void	set_player_steps(t_raycast *ray, t_player *p)
 {
@@ -47,6 +52,14 @@ void	set_player_steps(t_raycast *ray, t_player *p)
 	}
 }
 
+/*
+** Calculating: 
+** Distance of perpendicular ray;
+** Lowest (draw_start) and highest (draw_end) pixel to fill in current stripe
+** by using the height of line to draw on screen(=S_HEIGHT / perp_wall_dist);
+** The value of wallx - where exactly the wall was hit
+** Tex_x is the x coordinate on texture
+*/
 void	calculate_draw_parameters(t_raycast *ray, t_gamedata *game)
 {
 	if (ray->side == 0)
@@ -79,7 +92,6 @@ void	calculate_draw_parameters(t_raycast *ray, t_gamedata *game)
 ** ray calculations & DDA (jumping to next square: in x or y direction:
 ** side 0 - EAST, WEST, side 1 - NORTH, SOUTH) until it hits a wall
 ** (finding in which square to move to when collision happens)
-** t_gamedata *game
 */
 
 void	raycast_dda(t_raycast *ray, t_gamedata *game)
@@ -106,7 +118,9 @@ void	raycast_dda(t_raycast *ray, t_gamedata *game)
 }
 
 /*
-**  calculating texture position and rendering the pixels
+** Casting the tx coord. to int and masking with (txHeight-1) in case of overflow
+** Calculating texture position and rendering the pixels accordingly, by using
+** the side variable & the coordinates of the player in relation to the map
 */
 void	draw_image(int x, t_raycast *ray, t_gamedata *ptr)
 {
@@ -134,6 +148,19 @@ void	draw_image(int x, t_raycast *ray, t_gamedata *ptr)
 	}
 }
 
+/*
+** The raycasting loop is going through every x (for every vertical stripe).
+** The ray is starting at the position of the player (posX, posY)
+** Calculating ray pos & dir
+** mapX and mapY: the current square of the map the ray is in
+** Setting the player steps, performing DDA algorithm, calculating draw param.
+** Setting how much to increase the texture coordinate per screen pixel:
+** step = 1.0 * texHeight / lineHeight, where lh= (int)(S_HEIGHT/perp_wall_dist)
+** Starting tex coordinate: texPos = (drawStart - h / 2 + lineHeight / 2) * step
+** Drawing the image
+** Inspired from: https://lodev.org/cgtutor/raycasting.html
+*/
+
 void	raycast(t_gamedata *game)
 {
 	t_raycast	ray;
@@ -151,7 +178,7 @@ void	raycast(t_gamedata *game)
 		set_player_steps(&ray, game->player);
 		raycast_dda(&ray, game);
 		calculate_draw_parameters(&ray, game);
-		ray.step = 1.0 * game->tex->img_north->height / \
+		ray.step = 1.0 * TX_HEIGHT / \
 			(int)(S_HEIGHT / ray.perp_wall_dist);
 		ray.tex_pos = (ray.draw_start - S_HEIGHT / 2 + \
 				(int)(S_HEIGHT / ray.perp_wall_dist) / 2) * ray.step;

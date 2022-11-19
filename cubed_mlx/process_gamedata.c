@@ -6,7 +6,7 @@
 /*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:16:21 by aionescu          #+#    #+#             */
-/*   Updated: 2022/11/14 20:07:17 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/11/19 11:49:07 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,13 @@ int	populate_gamedata(char *source, t_gamedata *gamedata)
 			while (*position != '\n' && *position != '\0')
 				position++;
 			if (*position != '\0')
-			{
 				while (*position == '\n')
 					position++;
-			}
 		}
+		else if (processed_line_result == 'm')
+			return (layout_logic_check(gamedata));
 		else
-			return (25);
+			return (38);
 	}
 	return (0);
 }

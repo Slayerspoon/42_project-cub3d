@@ -6,7 +6,7 @@
 #    By: lorfanu <lorfanu@student.42wolfsburg.de>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/23 19:30:15 by aionescu          #+#    #+#              #
-#    Updated: 2022/11/14 18:02:19 by lorfanu          ###   ########.fr        #
+#    Updated: 2022/11/17 19:08:15 by lorfanu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,17 +64,5 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
-
-# test: $(NAME)
-# 	./cub3d maps/mandatory.cub
-
-# test1: $(NAME)
-# 	./cub3d maps/test_inputfile.ber
-
-# test2: $(NAME)
-# 	./cub3d maps/test_inputfile.cub
-
-# test2: $(NAME)
-# 	./cub3d maps/test_file_invalid.cub
 
 .PHONY: all clean fclean re

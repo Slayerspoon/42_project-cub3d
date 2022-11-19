@@ -6,7 +6,7 @@
 /*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 20:33:43 by aionescu          #+#    #+#             */
-/*   Updated: 2022/11/12 21:18:20 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/11/18 22:30:25 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ void	report_error_batch_three(int error_code)
 		printf("Error:\nIllegal use of commas identified in input file.\n");
 	else if (error_code == 37)
 		printf("Error:\nMissing color code for floor or ceiling.\n");
+	else if (error_code == 38)
+		printf("Error:\nUnspecified map information error.\n");
 }
 
 // This function calls all the sub-functions necessary for error-checking,
@@ -113,7 +115,7 @@ int	parse_and_report(int argc, char **argv, t_gamedata *gamedata)
 			report_error_batch_one(error_code);
 		if (10 <= error_code && error_code <= 25)
 			report_error_batch_two(error_code);
-		if (31 <= error_code && error_code <= 37)
+		if (31 <= error_code && error_code <= 38)
 			report_error_batch_three(error_code);
 		return (error_code);
 	}

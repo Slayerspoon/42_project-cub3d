@@ -6,7 +6,7 @@
 /*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:54:53 by aionescu          #+#    #+#             */
-/*   Updated: 2022/11/14 19:57:50 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/11/19 11:25:46 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	make_rect_and_replace_space(t_gamedata *gamedata)
 	int	col;
 
 	if (layout_logic_check(gamedata) != 0)
-		return ('l');
+		return ('m');
 	longest_line = calculate_longest_line(gamedata);
 	row = 0;
 	col = 0;
@@ -68,8 +68,8 @@ char	make_rect_and_replace_space(t_gamedata *gamedata)
 
 // This function is used to check if there is any non-space character before
 // the end of the current line, starting from the passed pointer.
-// Returns 0 if false, or 1 if true.
-int	empty_space_ahead(char *start_ptr)
+// Returns 0 if false, or 1 if true and additionally increases *pos as needed.
+int	empty_space_ahead(char *start_ptr, int *pos)
 {
 	int	flag_empty;
 	int	index;
@@ -85,6 +85,8 @@ int	empty_space_ahead(char *start_ptr)
 		}
 		index++;
 	}
+	if (flag_empty == 1)
+		*pos = *pos + index;
 	return (flag_empty);
 }
 
@@ -102,7 +104,7 @@ char	process_layout(char *p, t_gamedata *gamedata)
 	col = 0;
 	while (p[pos] != '\0')
 	{
-		if (p[pos] == '\n' || empty_space_ahead(p + pos))
+		if (p[pos] == '\n' || empty_space_ahead(p + pos, &pos))
 		{
 			gamedata->map_layout[row][col] = '\0';
 			row++;

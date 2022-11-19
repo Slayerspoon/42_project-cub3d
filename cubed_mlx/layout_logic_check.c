@@ -6,7 +6,7 @@
 /*   By: aionescu <aionescu@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 16:54:27 by aionescu          #+#    #+#             */
-/*   Updated: 2022/11/08 20:13:40 by aionescu         ###   ########.fr       */
+/*   Updated: 2022/11/18 22:29:43 by aionescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,11 @@ int	check_for_nsewzero(t_gamedata *gamedata, int row, int col)
 	if (gamedata->map_layout[row - 1][col] == ' '
 		|| gamedata->map_layout[row][col - 1] == ' '
 		|| gamedata->map_layout[row][col + 1] == ' '
-		|| gamedata->map_layout[row + 1][col] == ' ')
+		|| gamedata->map_layout[row + 1][col] == ' '
+		|| gamedata->map_layout[row - 1][col] == '\0'
+		|| gamedata->map_layout[row][col - 1] == '\0'
+		|| gamedata->map_layout[row][col + 1] == '\0'
+		|| gamedata->map_layout[row + 1][col] == '\0')
 		return (25);
 	else
 		return (0);
@@ -68,8 +72,6 @@ int	check_walls_updown(t_gamedata *gamedata)
 	col = 0;
 	while (gamedata->map_layout[0][col] != '\0')
 	{
-		while (gamedata->map_layout[row][col] == ' ')
-			row++;
 		if (gamedata->map_layout[row][col] != '1')
 			return (23);
 		row = 0;
@@ -137,6 +139,7 @@ int	layout_logic_check(t_gamedata *gamedata)
 			col = 0;
 		}
 	}
-	verdict = check_player(gamedata);
+	if (verdict == 0)
+		verdict = check_player(gamedata);
 	return (verdict);
 }
